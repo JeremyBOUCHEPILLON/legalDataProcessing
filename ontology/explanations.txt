@@ -1,0 +1,1 @@
+This folder contains the current version of the ontology used to represent the rules but also the set of tests
