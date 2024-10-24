@@ -1,0 +1,1 @@
+This folder contains the situations descriptions designed to test our ontology and our rules.
