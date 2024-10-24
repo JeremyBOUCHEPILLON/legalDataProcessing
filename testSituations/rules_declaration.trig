@@ -1,0 +1,88 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix lrml: <http://docs.oasis-open.org/legalruleml/ns/v1.0#> .
+@prefix lrmlmm: <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#> .
+@prefix nrv: <http://ns.inria.fr/nrv#> .
+@prefix :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#> .
+
+
+{
+:PoliceJustice a :LawText;
+rdfs:label "legal rules in Police Justice"@en .
+
+:LawEIO a :LawText ;
+rdfs:label "legal rules for European Investigation Order"@en .
+
+
+:LSS1 a lrmlmm:Sources ;
+:hasSource :PoliceJustice  .
+
+:LRD1 a lrmlmm:LegalRuleMLDocument ;
+:hasSources :LSS1 ;
+:hasStatements :SS1 .
+
+:SS1 a :LogicalFormulas ;
+:hasStatement :LED10 .
+
+
+
+:LED10 a nrv:LogicalFormula, :PermissionStatement ;
+rdfs:label "Art 10 : Special Data Processing"@en .
+
+
+
+
+
+:LSS2 a lrmlmm:Sources ;
+:hasSource :LawEIO  .
+
+:LRD2 a lrmlmm:LegalRuleMLDocument ;
+:hasSources :LSS2 ;
+:hasStatements :SS2 .
+
+:SS2 a :LogicalFormulas ;
+:hasStatement :Investigation6_1 ;
+:hasStatement :Investigation7_1 ;
+:hasStatement :Investigation7_4 ;
+:hasStatement :Investigation7_6 ;
+:hasStatement :Investigation13_2a ;
+:hasStatement :Investigation13_2b ;
+:hasStatement :Investigation13_4 ;
+:hasStatement :PInvestigation32_1 .
+
+
+
+:Investigation6_1 a nrv:LogicalFormula, :PermissionStatement ;
+rdfs:label "Art 6.1 : Conditions of Emission and Transmission of an EIO"@en .
+
+
+:Investigation7_1 a nrv:LogicalFormula, :ObligationStatement ;
+rdfs:label "Art 7.1 : Transmission of an EIO"@en .
+
+
+:Investigation7_4 a nrv:LogicalFormula, :PermissionStatement ;
+rdfs:label "Art 7.4 : Transmission of an EIO"@en .
+
+
+:Investigation7_6 a nrv:LogicalFormula, :ObligationStatement ;
+rdfs:label "Art 7.6 : Transmission of an EIO"@en .
+
+
+:Investigation13_2a a nrv:LogicalFormula, :PermissionStatement ;
+rdfs:label "Art 13.2-a : Transmission of proof elements"@en .
+
+
+:Investigation13_2b a nrv:LogicalFormula, :ObligationStatement ;
+rdfs:label "Art 13.2-b : Transmission of proof elements"@en .
+
+
+:Investigation13_4 a nrv:LogicalFormula, :PermissionStatement ;
+rdfs:label "Art 13.4 : Transmission of proof elements"@en .
+
+
+:Investigation32_1 a nrv:LogicalFormula, :PermissionStatement ;
+rdfs:label "Art 32 : Provisory measures"@en .
+
+}
+
+
+

@@ -1,0 +1,24 @@
+@prefix :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#> .
+@prefix lrmlmm:  <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#> .
+
+
+{
+:Situation11 a lrmlmm:FactualStatement .
+}
+
+
+GRAPH :Situation11 { 
+   :action_suspension_02
+       a :ActionSuspension;
+       :suspends :evidence_transmission_01;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :hasValidationAuthorityAction :valid_auth_1.
+       
+
+   :evidence_transmission_01
+       a :DataTransmission;
+       :involvesEvidence :evidence_set_01;
+       :involvesProcedure :EIO_ref_01.
+
+}

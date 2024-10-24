@@ -1,0 +1,34 @@
+@prefix :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#> .
+@prefix lrmlmm:  <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#> .
+
+
+{
+:Situation04 a lrmlmm:FactualStatement .
+}
+
+
+GRAPH :Situation04 { 
+   :storage_change_04
+       a :DataStorageChange;
+       :involvesData :dataset_02;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :protectsVitalInterests "true"^^xsd:boolean.
+       
+   :dataset_02 
+       a :DataSet;
+       :containsData :data_02;
+       :containsData :data_03;
+       :hasOriginData :stor_entity_1;
+       :hasDestinationData :authority_1.
+
+   :data_02 
+       a :SensitivePersonalData;
+       a :PrivateData.
+
+   :data_03 
+       a :SensitivePersonalData;
+       a :PrivateData.
+
+
+}

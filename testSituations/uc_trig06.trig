@@ -1,0 +1,30 @@
+@prefix :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#> .
+@prefix lrmlmm:  <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#> .
+
+
+{
+:Situation06 a lrmlmm:FactualStatement .
+}
+
+
+GRAPH :Situation06 { 
+   :EIO_emission_02
+       a :ProcedureEmission;
+       :involvesProcedure :EIO_02;
+       :hasIssueAuthorityEIO :authority_1;
+       :hasExecutionAuthorityEIO :exec_auth_1;
+       :hasValidationAuthorityEIO :valid_auth_1.
+       
+
+   :EIO_02
+       a :EIO;
+       :asksMeasureEIO :measure_02.
+
+
+   :measure_02
+       a :InvestigationMeasure;
+       a :TelecomInterception;
+       :hasJustificationMeasure :participation_in_criminal_organization;
+       :involvesPersonMeasure :Arthur_Watts.
+
+}
