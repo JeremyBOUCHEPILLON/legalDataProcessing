@@ -19,7 +19,12 @@ WHERE {
 		UNION
 		{ ?action :protectsVitalInterests "true"^^xsd:boolean }
 		UNION
-		{ ?data a :PublicData }
+		{ FILTER NOT EXISTS {
+        		?data a :SensitivePersonalData .
+        		FILTER NOT EXISTS {
+            		?data a :PublicData .
+        		}
+    		}}
 	}}
 	GRAPH ?g {?action ?p ?v.}
 }
