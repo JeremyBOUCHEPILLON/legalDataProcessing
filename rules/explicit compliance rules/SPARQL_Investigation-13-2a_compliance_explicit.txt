@@ -1,0 +1,19 @@
+PREFIX nrv: <http://ns.inria.fr/nrv#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX lrml: <http://docs.oasis-open.org/legalruleml/ns/v1.0#>
+PREFIX lrmlmm: <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#>
+PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+INSERT { graph ?g { :Investigation13_2a nrv:hasCompliance ?g .}}
+WHERE {
+	{SELECT DISTINCT *
+		WHERE {
+		:Investigation13_2a :isApplicable ?g .
+		?action a :ActionSuspension .
+		?action :isPendingLegalRemedy "true"^^xsd:boolean .
+		FILTER NOT EXISTS {?eio :givesSufficientReason "true"^^xsd:boolean .}
+	}}
+	GRAPH ?g {?action ?p ?v .}
+}

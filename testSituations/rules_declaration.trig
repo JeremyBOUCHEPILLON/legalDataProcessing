@@ -21,12 +21,20 @@ rdfs:label "legal rules for European Investigation Order"@en .
 :hasStatements :SS1 .
 
 :SS1 a :LogicalFormulas ;
-:hasStatement :LED10 .
+:hasStatement :LED10_applicable .
+:hasStatement :LED10_explicit_compliant .
+:hasStatement :LED10_implicit_compliant .
 
 
 
-:LED10 a nrv:LogicalFormula, :PermissionStatement ;
-rdfs:label "Art 10 : Special Data Processing"@en .
+:LED10_applicable a nrv:LogicalFormula, :Applicability ;
+rdfs:label "Applicability of Art 10 : Special Data Processing"@en .
+
+:LED10_explicit_compliant a nrv:LogicalFormula, :PermissionStatement ;
+rdfs:label "Compliance to Art 10 : Special Data Processing"@en .
+
+:LED10_implicit_compliant a nrv:LogicalFormula, nrv:Compliance, :ProhibitionStatement ;
+rdfs:label "Negation of Compliance to Art 10 : Special Data Processing"@en .
 
 
 

@@ -14,17 +14,19 @@ WHERE {
         	?action a :Action .
     		?action :involvesData ?dataset .
     		?dataset :containsData ?data .
-		?action :isNecessary "true"^^xsd:boolean .
-		{ ?action :isAuthorizedLaw "true"^^xsd:boolean }
-		UNION
-		{ ?action :protectsVitalInterests "true"^^xsd:boolean }
-		UNION
-		{ FILTER NOT EXISTS {
-        		?data a :SensitivePersonalData .
-        		FILTER NOT EXISTS {
-            		?data a :PublicData .
-        		}
-    		}}
+		FILTER NOT EXISTS {
+			?action :isNecessary "true"^^xsd:boolean .
+			{ ?action :isAuthorizedLaw "true"^^xsd:boolean .}
+			UNION
+			{ ?action :protectsVitalInterests "true"^^xsd:boolean .}
+			UNION
+			{ FILTER NOT EXISTS {
+        			?data a :SensitivePersonalData .
+        			FILTER NOT EXISTS {
+            				?data a :PublicData .
+        			}
+    			}}
+		}
 	}}
 	GRAPH ?g {?action ?p ?v.}
 }

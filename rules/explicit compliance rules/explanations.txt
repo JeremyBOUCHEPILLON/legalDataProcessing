@@ -1,0 +1,2 @@
+This folder contains the formalized explicit rules obtained from the studied regulations.
+The rules are expressed in SPARQL.
