@@ -7,7 +7,15 @@
 
 {
 :PoliceJustice a :LawText;
-rdfs:label "legal rules in Police Justice"@en .
+rdfs:label "legal rules in Police Justice"@en ;
+:containsArticle :LED_10 .
+
+
+:LED_10 a :LawArticle;
+:hasRelatedRule :LED10_applicable ;
+:hasRelatedRule :LED10_explicit_compliant ;
+:hasRelatedRule :LED10_implicit_compliant .
+
 
 :LSS1 a lrmlmm:Sources ;
 :hasSource :PoliceJustice  .
@@ -22,13 +30,13 @@ rdfs:label "legal rules in Police Justice"@en .
 :hasStatement :LED10_implicit_compliant .
 
 
-:LED10_applicable a nrv:LogicalFormula, :Applicability ;
+:LED10_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
 rdfs:label "Applicability of Art 10 : Special Data Processing"@en .
 
-:LED10_explicit_compliant a nrv:LogicalFormula, :PermissionStatement ;
+:LED10_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
 rdfs:label "Compliance to Art 10 : Special Data Processing"@en .
 
-:LED10_implicit_compliant a nrv:LogicalFormula, nrv:Compliance, :ProhibitionStatement ;
+:LED10_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
 rdfs:label "Negation of Compliance to Art 10 : Special Data Processing"@en .
 
 
@@ -36,7 +44,57 @@ rdfs:label "Negation of Compliance to Art 10 : Special Data Processing"@en .
 
 
 :LawEIO a :LawText ;
-rdfs:label "legal rules for European Investigation Order"@en .
+rdfs:label "legal rules for European Investigation Order"@en ;
+:containsArticle :Investigation6_1 ;
+:containsArticle :Investigation7_1 ;
+:containsArticle :Investigation7_4 ;
+:containsArticle :Investigation7_6 ;
+:containsArticle :Investigation13_2a ;
+:containsArticle :Investigation13_2b ;
+:containsArticle :Investigation13_4 ;
+:containsArticle :Investigation32_1 .
+
+:Investigation6_1 a :LawArticle;
+:hasRelatedRule :Investigation6_1_applicable ;
+:hasRelatedRule :Investigation6_1_explicit_compliant ;
+:hasRelatedRule :Investigation6_1_implicit_compliant .
+
+:Investigation7_1 a :LawArticle;
+:hasRelatedRule :Investigation7_1_applicable ;
+:hasRelatedRule :Investigation7_1_explicit_compliant ;
+:hasRelatedRule :Investigation7_1_implicit_compliant .
+
+:Investigation7_4 a :LawArticle;
+:hasRelatedRule :Investigation7_4_applicable ;
+:hasRelatedRule :Investigation7_4_explicit_compliant ;
+:hasRelatedRule :Investigation7_4_implicit_compliant .
+
+:Investigation7_6 a :LawArticle;
+:hasRelatedRule :Investigation7_6_applicable ;
+:hasRelatedRule :Investigation7_6_explicit_compliant ;
+:hasRelatedRule :Investigation7_6_implicit_compliant .
+
+:Investigation13_2a a :LawArticle;
+:hasRelatedRule :Investigation13_2a_applicable ;
+:hasRelatedRule :Investigation13_2a_explicit_compliant ;
+:hasRelatedRule :Investigation13_2a_implicit_compliant .
+
+:Investigation13_2b a :LawArticle;
+:hasRelatedRule :Investigation13_2b_applicable ;
+:hasRelatedRule :Investigation13_2b_explicit_compliant ;
+:hasRelatedRule :Investigation13_2b_implicit_compliant .
+
+:Investigation13_4 a :LawArticle;
+:hasRelatedRule :Investigation13_4_applicable ;
+:hasRelatedRule :Investigation13_4_explicit_compliant ;
+:hasRelatedRule :Investigation13_4_implicit_compliant .
+
+:Investigation32_1 a :LawArticle;
+:hasRelatedRule :Investigation32_1_applicable ;
+:hasRelatedRule :Investigation32_1_explicit_compliant ;
+:hasRelatedRule :Investigation32_1_implicit_compliant .
+
+
 
 :LSS2 a lrmlmm:Sources ;
 :hasSource :LawEIO  .
@@ -53,7 +111,7 @@ rdfs:label "legal rules for European Investigation Order"@en .
 :hasStatement :Investigation13_2a ;
 :hasStatement :Investigation13_2b ;
 :hasStatement :Investigation13_4 ;
-:hasStatement :PInvestigation32_1 .
+:hasStatement :Investigation32_1 .
 
 
 

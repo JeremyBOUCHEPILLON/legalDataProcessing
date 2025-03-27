@@ -6,7 +6,10 @@ PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sha
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
-INSERT { graph ?g { :Investigation13_2a :isApplicable ?g .}}
+INSERT { graph ?g { 
+	:Investigation13_2a_explicit_compliant :isApplicable ?g .
+	:Investigation13_2a_implicit_compliant :isApplicable ?g . 
+}}
 WHERE {
 	{SELECT DISTINCT *
 		WHERE {
