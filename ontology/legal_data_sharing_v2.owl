@@ -171,6 +171,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasArticle -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasArticle">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isArticleOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawText"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawArticle"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasBirthPlace -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasBirthPlace">
@@ -375,6 +385,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasRelatedRule -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasRelatedRule">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawArticle"/>
+        <rdfs:range rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasRepresentative -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#hasRepresentative">
@@ -557,6 +576,15 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isApplicableTo">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawText"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Offence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isArticleOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isArticleOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawArticle"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawText"/>
     </owl:ObjectProperty>
     
 
@@ -794,6 +822,15 @@
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#InvestigationMeasure"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>investigation measures could have been ordered under the same conditions in a similar domestic case</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#content -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#content">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawArticle"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
 
@@ -1452,6 +1489,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#DocumentContent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#DocumentContent"/>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Drugs -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Drugs">
@@ -1763,6 +1806,14 @@
     <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Language -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Language"/>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawArticle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#LawArticle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#DocumentContent"/>
+    </owl:Class>
     
 
 

@@ -9,10 +9,6 @@
 :PoliceJustice a :LawText;
 rdfs:label "legal rules in Police Justice"@en .
 
-:LawEIO a :LawText ;
-rdfs:label "legal rules for European Investigation Order"@en .
-
-
 :LSS1 a lrmlmm:Sources ;
 :hasSource :PoliceJustice  .
 
@@ -24,7 +20,6 @@ rdfs:label "legal rules for European Investigation Order"@en .
 :hasStatement :LED10_applicable .
 :hasStatement :LED10_explicit_compliant .
 :hasStatement :LED10_implicit_compliant .
-
 
 
 :LED10_applicable a nrv:LogicalFormula, :Applicability ;
@@ -39,6 +34,9 @@ rdfs:label "Negation of Compliance to Art 10 : Special Data Processing"@en .
 
 
 
+
+:LawEIO a :LawText ;
+rdfs:label "legal rules for European Investigation Order"@en .
 
 :LSS2 a lrmlmm:Sources ;
 :hasSource :LawEIO  .
