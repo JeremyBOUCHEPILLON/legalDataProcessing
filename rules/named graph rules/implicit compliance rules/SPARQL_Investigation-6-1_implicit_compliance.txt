@@ -6,15 +6,15 @@ PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sha
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
-INSERT { graph ?g { :Investigation13_2a nrv:hasCompliance ?g .}}
-WHERE {
-	{SELECT DISTINCT *
+INSERT { graph ?g { :Investigation6_1_implicit_compliant nrv:hasCompliance ?g .}}
+WHERE { 
+	{SELECT DISTINCT ?action
 		WHERE {
-		:Investigation13_2a :isApplicable ?g .
-		?action a :ActionSuspension .
+		:Investigation6_1_implicit_compliant :isApplicable ?g .
 		FILTER NOT EXISTS {
-			?action :isPendingLegalRemedy "true"^^xsd:boolean .
-			FILTER NOT EXISTS {?eio :givesSufficientReason "true"^^xsd:boolean .}
+			?action :isNecessary "true"^^xsd:boolean .
+			?eio :asksMeasureEIO ?measure .
+			?measure :conditionsIdem "true"^^xsd:boolean .
 		}
 	}}
 	GRAPH ?g {?action ?p ?v .}

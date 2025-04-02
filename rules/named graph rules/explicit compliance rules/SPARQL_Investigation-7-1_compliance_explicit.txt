@@ -6,12 +6,12 @@ PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sha
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
-INSERT { graph ?g { :Investigation7_6 nrv:hasCompliance ?g .}}
+INSERT { graph ?g { :Investigation7_1_explicit_compliant nrv:hasCompliance ?g .}}
 WHERE {
 	{SELECT DISTINCT *
 		WHERE {
-		:Investigation7_6 :isApplicable ?g .
-		?executingAuthority :mustInform ?realExecutingAuthority .
+		:Investigation7_1_explicit_compliant :isApplicable ?g .
+		?mean a :MeanLeavingWrittenTraces .
 	}}
-	GRAPH ?g {?executingAuthority ?p ?v .}
+	GRAPH ?g {?mean ?p ?v .}
 }
