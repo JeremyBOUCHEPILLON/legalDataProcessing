@@ -6,45 +6,46 @@
 
 
 {
-:PoliceJustice a :LawText;
-rdfs:label "legal rules in Police Justice"@en ;
+:LED a :LawText;
+rdfs:label "Law Enforcement Directive"@en ;
 :containsArticle :LED_10 .
 
 
 :LED_10 a :LawArticle;
+rdfs:label "LED Art 10 : Special Data Processing"@en ;
 :hasRelatedRule :LED10_applicable ;
 :hasRelatedRule :LED10_explicit_compliant ;
 :hasRelatedRule :LED10_implicit_compliant .
 
 
 :LSS1 a lrmlmm:Sources ;
-:hasSource :PoliceJustice  .
+:hasSource :LED  .
 
 :LRD1 a lrmlmm:LegalRuleMLDocument ;
 :hasSources :LSS1 ;
 :hasStatements :SS1 .
 
 :SS1 a :LogicalFormulas ;
-:hasStatement :LED10_applicable .
-:hasStatement :LED10_explicit_compliant .
+:hasStatement :LED10_applicable ;
+:hasStatement :LED10_explicit_compliant ;
 :hasStatement :LED10_implicit_compliant .
 
 
 :LED10_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
-rdfs:label "Applicability of Art 10 : Special Data Processing"@en .
+rdfs:label "Applicability of Art 10 from the LED"@en .
 
 :LED10_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
-rdfs:label "Compliance to Art 10 : Special Data Processing"@en .
+rdfs:label "Compliance to Art 10 from the LED"@en .
 
 :LED10_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
-rdfs:label "Negation of Compliance to Art 10 : Special Data Processing"@en .
+rdfs:label "Negation of Compliance to Art 10 from the LED"@en .
 
 
 
 
 
 :LawEIO a :LawText ;
-rdfs:label "legal rules for European Investigation Order"@en ;
+rdfs:label "Legal rules for European Investigation Order"@en ;
 :containsArticle :Investigation6_1 ;
 :containsArticle :Investigation7_1 ;
 :containsArticle :Investigation7_4 ;
@@ -55,41 +56,49 @@ rdfs:label "legal rules for European Investigation Order"@en ;
 :containsArticle :Investigation32_1 .
 
 :Investigation6_1 a :LawArticle;
+rdfs:label "LawEIO Art 6.1 : Conditions of Emission and Transmission of an EIO"@en ;
 :hasRelatedRule :Investigation6_1_applicable ;
 :hasRelatedRule :Investigation6_1_explicit_compliant ;
 :hasRelatedRule :Investigation6_1_implicit_compliant .
 
 :Investigation7_1 a :LawArticle;
+rdfs:label "LawEIO Art 7.1 : Transmission of an EIO"@en ;
 :hasRelatedRule :Investigation7_1_applicable ;
 :hasRelatedRule :Investigation7_1_explicit_compliant ;
 :hasRelatedRule :Investigation7_1_implicit_compliant .
 
 :Investigation7_4 a :LawArticle;
+rdfs:label "LawEIO Art 7.4 : Transmission of an EIO"@en ;
 :hasRelatedRule :Investigation7_4_applicable ;
 :hasRelatedRule :Investigation7_4_explicit_compliant ;
 :hasRelatedRule :Investigation7_4_implicit_compliant .
 
 :Investigation7_6 a :LawArticle;
+rdfs:label "LawEIO Art 7.6 : Transmission of an EIO"@en ;
 :hasRelatedRule :Investigation7_6_applicable ;
 :hasRelatedRule :Investigation7_6_explicit_compliant ;
 :hasRelatedRule :Investigation7_6_implicit_compliant .
 
 :Investigation13_2a a :LawArticle;
+rdfs:label "LawEIO Art 13.2-a : Transmission of proof elements"@en ;
 :hasRelatedRule :Investigation13_2a_applicable ;
 :hasRelatedRule :Investigation13_2a_explicit_compliant ;
 :hasRelatedRule :Investigation13_2a_implicit_compliant .
 
 :Investigation13_2b a :LawArticle;
+rdfs:label "LawEIO Art 13.2-b : Transmission of proof elements"@en ;
 :hasRelatedRule :Investigation13_2b_applicable ;
 :hasRelatedRule :Investigation13_2b_explicit_compliant ;
 :hasRelatedRule :Investigation13_2b_implicit_compliant .
 
 :Investigation13_4 a :LawArticle;
+rdfs:label "LawEIO Art 13.4 : Transmission of proof elements"@en ;
 :hasRelatedRule :Investigation13_4_applicable ;
 :hasRelatedRule :Investigation13_4_explicit_compliant ;
 :hasRelatedRule :Investigation13_4_implicit_compliant .
 
 :Investigation32_1 a :LawArticle;
+rdfs:label "LawEIO Art 32 : Provisory measures"@en ;
 :hasRelatedRule :Investigation32_1_applicable ;
 :hasRelatedRule :Investigation32_1_explicit_compliant ;
 :hasRelatedRule :Investigation32_1_implicit_compliant .
@@ -104,47 +113,112 @@ rdfs:label "legal rules for European Investigation Order"@en ;
 :hasStatements :SS2 .
 
 :SS2 a :LogicalFormulas ;
-:hasStatement :Investigation6_1 ;
-:hasStatement :Investigation7_1 ;
-:hasStatement :Investigation7_4 ;
-:hasStatement :Investigation7_6 ;
-:hasStatement :Investigation13_2a ;
-:hasStatement :Investigation13_2b ;
-:hasStatement :Investigation13_4 ;
-:hasStatement :Investigation32_1 .
+:hasStatement :Investigation6_1_applicable ;
+:hasStatement :Investigation6_1_explicit_compliant ;
+:hasStatement :Investigation6_1_implicit_compliant ;
+:hasStatement :Investigation7_1_applicable ;
+:hasStatement :Investigation7_1_explicit_compliant ;
+:hasStatement :Investigation7_1_implicit_compliant ;
+:hasStatement :Investigation7_4_applicable ;
+:hasStatement :Investigation7_4_explicit_compliant ;
+:hasStatement :Investigation7_4_implicit_compliant ;
+:hasStatement :Investigation7_6_applicable ;
+:hasStatement :Investigation7_6_explicit_compliant ;
+:hasStatement :Investigation7_6_implicit_compliant ;
+:hasStatement :Investigation13_2a_applicable ;
+:hasStatement :Investigation13_2a_explicit_compliant ;
+:hasStatement :Investigation13_2a_implicit_compliant ;
+:hasStatement :Investigation13_2b_applicable ;
+:hasStatement :Investigation13_2b_explicit_compliant ;
+:hasStatement :Investigation13_2b_implicit_compliant ;
+:hasStatement :Investigation13_4_applicable ;
+:hasStatement :Investigation13_4_explicit_compliant ;
+:hasStatement :Investigation13_4_implicit_compliant ;
+:hasStatement :Investigation32_1_applicable ;
+:hasStatement :Investigation32_1_explicit_compliant ;
+:hasStatement :Investigation32_1_implicit_compliant .
 
 
 
-:Investigation6_1 a nrv:LogicalFormula, :PermissionStatement ;
-rdfs:label "Art 6.1 : Conditions of Emission and Transmission of an EIO"@en .
+
+:Investigation6_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 6.1 from LawEIO"@en .
+
+:Investigation6_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
+rdfs:label "Compliance to Art 6.1 from LawEIO"@en .
+
+:Investigation6_1_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
+rdfs:label "Negation of Compliance to Art 6.1 from LawEIO"@en .
 
 
-:Investigation7_1 a nrv:LogicalFormula, :ObligationStatement ;
-rdfs:label "Art 7.1 : Transmission of an EIO"@en .
+:Investigation7_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 7.1 from LawEIO"@en .
+
+:Investigation7_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ObligationStatement ;
+rdfs:label "Compliance to Art 7.1 from LawEIO"@en .
+
+:Investigation7_1_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :FacultativeStatement ;
+rdfs:label "Negation of Compliance to Art 7.1 from LawEIO"@en .
 
 
-:Investigation7_4 a nrv:LogicalFormula, :PermissionStatement ;
-rdfs:label "Art 7.4 : Transmission of an EIO"@en .
+:Investigation7_4_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 7.4 from LawEIO"@en .
+
+:Investigation7_4_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
+rdfs:label "Compliance to Art 7.4 from LawEIO"@en .
+
+:Investigation7_4_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
+rdfs:label "Negation of Compliance to Art 7.4 from LawEIO"@en .
 
 
-:Investigation7_6 a nrv:LogicalFormula, :ObligationStatement ;
-rdfs:label "Art 7.6 : Transmission of an EIO"@en .
+:Investigation7_6_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 7.6 from LawEIO"@en .
+
+:Investigation7_6_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ObligationStatement ;
+rdfs:label "Compliance to Art 7.6 from LawEIO"@en .
+
+:Investigation7_6_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :FacultativeStatement ;
+rdfs:label "Negation of Compliance to Art 7.6 from LawEIO"@en .
 
 
-:Investigation13_2a a nrv:LogicalFormula, :PermissionStatement ;
-rdfs:label "Art 13.2-a : Transmission of proof elements"@en .
+Investigation13_2a_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 13.2-a from LawEIO"@en .
+
+:Investigation13_2a_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
+rdfs:label "Compliance to Art 13.2-a from LawEIO"@en .
+
+:Investigation13_2a_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
+rdfs:label "Negation of Compliance to Art 13.2-a from LawEIO"@en .
 
 
-:Investigation13_2b a nrv:LogicalFormula, :ObligationStatement ;
-rdfs:label "Art 13.2-b : Transmission of proof elements"@en .
+:Investigation13_2b_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 13.2-b from LawEIO"@en .
+
+:Investigation13_2b_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ObligationStatement ;
+rdfs:label "Compliance to Art 13.2-b from LawEIO"@en .
+
+:Investigation13_2b_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :FacultativeStatement ;
+rdfs:label "Negation of Compliance to Art 13.2-b from LawEIO"@en .
 
 
-:Investigation13_4 a nrv:LogicalFormula, :PermissionStatement ;
-rdfs:label "Art 13.4 : Transmission of proof elements"@en .
+Investigation13_4_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 13.4 from LawEIO"@en .
+
+:Investigation13_4_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
+rdfs:label "Compliance to Art 13.4 from LawEIO"@en .
+
+:Investigation13_4_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
+rdfs:label "Negation of Compliance to Art 13.4 from LawEIO"@en .
 
 
-:Investigation32_1 a nrv:LogicalFormula, :PermissionStatement ;
-rdfs:label "Art 32 : Provisory measures"@en .
+Investigation32_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+rdfs:label "Applicability of Art 32 from LawEIO"@en .
+
+:Investigation32_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
+rdfs:label "Compliance to Art 32 from LawEIO"@en .
+
+:Investigation32_1_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
+rdfs:label "Negation of Compliance to Art 32 from LawEIO"@en .
 
 }
 

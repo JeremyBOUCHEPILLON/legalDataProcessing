@@ -1,0 +1,2 @@
+This folder contains the rules that take care of conflicts by defining exception relations.
+The rules are expressed in SPARQL.

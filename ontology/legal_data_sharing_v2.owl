@@ -543,6 +543,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isAbout -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isAbout">
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Action"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isAddressOfAuthority -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#isAddressOfAuthority">

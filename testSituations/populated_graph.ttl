@@ -1,0 +1,1525 @@
+@prefix agg: <http://jena.apache.org/ARQ/function/aggregate#> .
+@prefix : <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#> .
+@prefix lrmlmm: <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#> .
+@prefix sail: <http://www.openrdf.org/config/sail#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix geof: <http://www.opengis.net/def/function/geosparql/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sparql-service-description: <http://www.w3.org/ns/sparql-service-description#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix array: <http://www.w3.org/2005/xpath-functions/array> .
+@prefix apf: <http://jena.apache.org/ARQ/property#> .
+@prefix lrml: <http://docs.oasis-open.org/legalruleml/ns/v1.0#> .
+@prefix rep: <http://www.openrdf.org/config/repository#> .
+@prefix map: <http://www.w3.org/2005/xpath-functions/map> .
+@prefix sr: <http://www.openrdf.org/config/repository/sail#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix afn: <http://jena.apache.org/ARQ/function#> .
+@prefix list: <http://jena.apache.org/ARQ/list#> .
+@prefix adr: <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses#> .
+@prefix nrv: <http://ns.inria.fr/nrv#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ofn: <http://www.ontotext.com/sparql/functions/> .
+@prefix geoext: <http://rdf.useekm.com/ext#> .
+@prefix rulemm: <http://docs.oasis-open.org/legalruleml/ns/v1.0/rule-metamodel#> .
+@prefix graphdb: <http://www.ontotext.com/config/graphdb#> .
+@prefix math: <http://www.w3.org/2005/xpath-functions/math> .
+@prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
+
+<http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing> a owl:Ontology;
+  owl:versionIRI <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing/2.0> .
+
+<http://www.w3.org/2006/time#generalDay> a rdfs:Datatype .
+
+<http://www.w3.org/2006/time#generalMonth> a rdfs:Datatype .
+
+<http://www.w3.org/2006/time#generalYear> a rdfs:Datatype .
+
+nrv:hasCompliance a owl:ObjectProperty;
+  rdfs:domain :RegulativeStatement;
+  rdfs:range lrmlmm:FactualStatement;
+  owl:propertyDisjointWith nrv:hasViolation .
+
+:RegulativeStatement a owl:Class;
+  rdfs:subClassOf nrv:LogicalFormula;
+  owl:equivalentClass _:node69;
+  rdfs:label "Deontic Statement"@en .
+
+lrmlmm:FactualStatement a owl:Class;
+  rdfs:subClassOf nrv:LogicalFormula .
+
+nrv:hasViolation a owl:ObjectProperty;
+  rdfs:domain nrv:ViolableRequirement;
+  rdfs:range lrmlmm:FactualStatement .
+
+nrv:ViolableRequirement a owl:Class;
+  rdfs:subClassOf :RegulativeStatement .
+
+:asksMeasureEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :InvestigationMeasure .
+
+:EIO a owl:Class;
+  rdfs:subClassOf :InvestigationProcess;
+  rdfs:label "Décision d'enquête européenne"@fr, "European Investigation Order"@en .
+
+:InvestigationMeasure a owl:Class;
+  rdfs:subClassOf :Action .
+
+:containsData a owl:ObjectProperty;
+  rdfs:domain :DataSet;
+  rdfs:range :Data .
+
+:DataSet a owl:Class .
+
+:Data a owl:Class .
+
+:containsModality a owl:ObjectProperty;
+  rdfs:domain :RegulativeStatement;
+  rdfs:range nrv:DeonticModality .
+
+nrv:DeonticModality a owl:Class;
+  rdfs:subClassOf nrv:Modality .
+
+:fromAcquisition a owl:ObjectProperty;
+  rdfs:domain :Acquisition;
+  rdfs:range :Authority .
+
+:Acquisition a owl:Class;
+  rdfs:subClassOf :Processing .
+
+:Authority a owl:Class;
+  rdfs:label "Authority"@en .
+
+:fromEmission a owl:ObjectProperty;
+  rdfs:domain :Emission;
+  rdfs:range :Authority .
+
+:Emission a owl:Class;
+  rdfs:subClassOf :Processing .
+
+:fromTransmission a owl:ObjectProperty;
+  rdfs:domain :Transmission;
+  rdfs:range :Authority .
+
+:Transmission a owl:Class;
+  rdfs:subClassOf :Processing .
+
+:happensInSituationEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Situation .
+
+:Situation a owl:Class .
+
+:hasAddressAuthority a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :Address;
+  owl:inverseOf :isAddressOfAuthority .
+
+:isAddressOfAuthority a owl:ObjectProperty;
+  rdfs:domain :Address;
+  rdfs:range :Authority .
+
+:Address a owl:Class;
+  rdfs:subClassOf :Location .
+
+:hasApplicableCode a owl:ObjectProperty;
+  rdfs:domain :Offence;
+  rdfs:range :LawText;
+  owl:inverseOf :isApplicableTo .
+
+:isApplicableTo a owl:ObjectProperty;
+  rdfs:domain :LawText;
+  rdfs:range :Offence .
+
+:Offence a owl:Class;
+  rdfs:label "Crime"@en, "Infraction"@fr .
+
+:LawText a owl:Class;
+  rdfs:subClassOf :Document .
+
+:hasBirthPlace a owl:ObjectProperty;
+  rdfs:domain :NaturalPerson;
+  rdfs:range :City .
+
+:NaturalPerson a owl:Class;
+  rdfs:subClassOf :Person .
+
+:City a owl:Class;
+  rdfs:subClassOf :Location .
+
+:hasCompetentAuthorityEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Authority;
+  owl:inverseOf :isCompetentAuthorityFor .
+
+:isCompetentAuthorityFor a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :EIO .
+
+:hasDestinationData a owl:ObjectProperty;
+  rdfs:domain :DataSet;
+  rdfs:range :Authority .
+
+:hasEvidence a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :Evidence;
+  owl:inverseOf :isEvidenceInPossessionOf .
+
+:isEvidenceInPossessionOf a owl:ObjectProperty;
+  rdfs:domain :Evidence;
+  rdfs:range :Authority .
+
+:Evidence a owl:Class;
+  rdfs:label "Evidence"@en, "Proof"@en .
+
+:hasExecutionAuthorityAction a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :Authority .
+
+:Action a owl:Class .
+
+:hasExecutionAuthorityEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Authority .
+
+:hasExecutionStateEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Country .
+
+:Country a owl:Class;
+  rdfs:subClassOf :Location;
+  rdfs:label "State" .
+
+:hasGender a owl:ObjectProperty;
+  rdfs:domain :Person;
+  rdfs:range :Gender .
+
+:Person a owl:Class .
+
+:Gender a owl:Class .
+
+:hasHeadOffice a owl:ObjectProperty;
+  rdfs:domain :LegalPerson;
+  rdfs:range :Address;
+  owl:inverseOf :isHeadOfficeOf .
+
+:isHeadOfficeOf a owl:ObjectProperty;
+  rdfs:domain :Address;
+  rdfs:range :LegalPerson .
+
+:LegalPerson a owl:Class;
+  rdfs:subClassOf :Person, :Organization .
+
+:hasInformation a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :Data;
+  owl:inverseOf :isInformationInPossessionOf .
+
+:isInformationInPossessionOf a owl:ObjectProperty;
+  rdfs:domain :Data;
+  rdfs:range :Authority .
+
+:hasIssueAuthorityAction a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :Authority .
+
+:hasIssueAuthorityEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Authority .
+
+:hasIssueStateEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Country .
+
+:hasJustificationAction a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :GroundOfJustification .
+
+:GroundOfJustification a owl:Class;
+  rdfs:comment "reasons for shortening a procedure or rejecting a procedure"@en;
+  rdfs:label "motif de justification"@fr .
+
+:hasJustificationMeasure a owl:ObjectProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range :GroundOfJustification .
+
+:hasLegalForm a owl:ObjectProperty;
+  rdfs:domain :LegalPerson;
+  rdfs:range :LegalForm;
+  owl:inverseOf :isLegalFormOf .
+
+:isLegalFormOf a owl:ObjectProperty;
+  rdfs:domain :LegalForm;
+  rdfs:range :LegalPerson .
+
+:LegalForm a owl:Class;
+  rdfs:subClassOf :Status .
+
+:hasMember a owl:ObjectProperty;
+  rdfs:domain :Organization;
+  rdfs:range :Person;
+  owl:inverseOf :isMemberOf .
+
+:isMemberOf a owl:ObjectProperty;
+  rdfs:domain :Person;
+  rdfs:range :Organization .
+
+:Organization a owl:Class .
+
+:hasMotiveEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :GroundOfJustification .
+
+:hasNationality a owl:ObjectProperty;
+  rdfs:domain :Person;
+  rdfs:range :Nationality .
+
+:Nationality a owl:Class .
+
+:hasOriginData a owl:ObjectProperty;
+  rdfs:domain :DataSet;
+  rdfs:range :Authority .
+
+:hasPreferredMethod a owl:ObjectProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range :ExecutionMethod .
+
+:ExecutionMethod a owl:Class .
+
+:hasReceptionAuthorityEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Authority .
+
+:hasRepresentative a owl:ObjectProperty;
+  rdfs:domain :LegalPerson;
+  rdfs:range :NaturalPerson;
+  owl:inverseOf :isRepresentativeOf .
+
+:isRepresentativeOf a owl:ObjectProperty;
+  rdfs:domain :NaturalPerson;
+  rdfs:range :LegalPerson .
+
+:hasRole a owl:ObjectProperty;
+  rdfs:domain :Person;
+  rdfs:range :Role .
+
+:Role a owl:Class;
+  rdfs:comment "role, function, grade, title" .
+
+:hasSource a owl:ObjectProperty;
+  rdfs:domain lrmlmm:Sources;
+  rdfs:range :Document;
+  rdfs:comment "inspired by lrmlmm:hasLegalSource" .
+
+lrmlmm:Sources a owl:Class .
+
+:Document a owl:Class .
+
+:hasSources a owl:ObjectProperty;
+  rdfs:subPropertyOf owl:topObjectProperty;
+  rdfs:domain lrmlmm:LegalRuleMLDocument;
+  rdfs:range lrmlmm:Sources .
+
+lrmlmm:LegalRuleMLDocument a owl:Class;
+  rdfs:subClassOf :Document .
+
+:hasStatement a owl:ObjectProperty;
+  rdfs:domain :LogicalFormulas;
+  rdfs:range nrv:LogicalFormula;
+  rdfs:label "hasLogicalFormula" .
+
+:LogicalFormulas a owl:Class;
+  rdfs:label "Statements"@en .
+
+nrv:LogicalFormula a owl:Class;
+  rdfs:label "Logical Formua"@en, "Statement"@en .
+
+:hasStatements a owl:ObjectProperty;
+  rdfs:domain lrmlmm:LegalRuleMLDocument;
+  rdfs:range :LogicalFormulas;
+  rdfs:label "hasLogicalFormulas" .
+
+:hasTarget a owl:ObjectProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range :Person .
+
+:hasTelNumberAuthority a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :PhoneNumberData .
+
+:PhoneNumberData a owl:Class;
+  rdfs:subClassOf :SubscriberData, <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData> .
+
+:hasValidationAuthorityAction a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :Authority .
+
+:hasValidationAuthorityEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Authority .
+
+:involvesData a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :DataSet .
+
+:involvesEvidence a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :Evidence .
+
+:involvesLocationMeasure a owl:ObjectProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range :Location .
+
+:Location a owl:Class .
+
+:involvesPerson a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :Person .
+
+:involvesPersonMeasure a owl:ObjectProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range :Person .
+
+:involvesProcedure a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :Procedure .
+
+:Procedure a owl:Class .
+
+:isAddressedToState a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Country .
+
+:isApplicable a owl:ObjectProperty;
+  rdfs:domain :RegulativeStatement;
+  rdfs:range lrmlmm:FactualStatement;
+  rdfs:comment "indicates if a Rule is applicable to a specific situation" .
+
+:isInSituation a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :Situation .
+
+:isLocatedIn a owl:ObjectProperty;
+  rdfs:domain :City;
+  rdfs:range :Country .
+
+:isNotCompetentAuthorityFor a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :EIO .
+
+:isRelatedToCountry a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :Country .
+
+:linkedToProcedureEvidence a owl:ObjectProperty;
+  rdfs:domain :Evidence;
+  rdfs:range :Procedure .
+
+:livesAt a owl:ObjectProperty;
+  rdfs:domain :Person;
+  rdfs:range :Address .
+
+:mustInform a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :Authority .
+
+:mustRespect a owl:ObjectProperty;
+  rdfs:domain :Authority;
+  rdfs:range :Procedure .
+
+:protectsVitalInterestOf a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :NaturalPerson .
+
+:suspends a owl:ObjectProperty;
+  rdfs:domain :ActionSuspension;
+  rdfs:range :Action .
+
+:ActionSuspension a owl:Class;
+  rdfs:subClassOf :Action .
+
+:takesPlaceInEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Location .
+
+:toTransmission a owl:ObjectProperty;
+  rdfs:domain :Transmission;
+  rdfs:range :Authority .
+
+:understandsLanguage a owl:ObjectProperty;
+  rdfs:domain :Person;
+  rdfs:range :Language .
+
+:Language a owl:Class .
+
+:usesComMean a owl:ObjectProperty;
+  rdfs:domain :Action;
+  rdfs:range :MeanLeavingWrittenTraces .
+
+:MeanLeavingWrittenTraces a owl:Class;
+  rdfs:subClassOf :CommunicationMean .
+
+:wouldCauseDamageTo a owl:ObjectProperty;
+  rdfs:domain :Procedure;
+  rdfs:range :Person .
+
+:wouldInvolveEIO a owl:ObjectProperty;
+  rdfs:domain :EIO;
+  rdfs:range :Person .
+
+:conditionsIdem a owl:DatatypeProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range xsd:boolean;
+  rdfs:comment "investigation measures could have been ordered under the same conditions in a similar domestic case" .
+
+:hasBirthDate a owl:DatatypeProperty;
+  rdfs:domain :Person;
+  rdfs:range xsd:dateTime .
+
+:hasCriminalRecord a owl:DatatypeProperty;
+  rdfs:domain :Person;
+  rdfs:range xsd:boolean;
+  rdfs:comment "!!! Pour l'instant une propriété booléenne mais devrait être plus détaillée (pouvoir renseigner le contenu éventuel d'un casier judiciaire) !!!" .
+
+:hasDurationMeasure a owl:DatatypeProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range <http://www.w3.org/2006/time#generalDay> .
+
+:hasEmissionDateEIO a owl:DatatypeProperty;
+  rdfs:domain :EIO;
+  rdfs:range xsd:dateTime .
+
+:hasExecutionDateEIO a owl:DatatypeProperty;
+  rdfs:domain :EIO;
+  rdfs:range xsd:dateTime .
+
+:hasExecutionPeriodEIO a owl:DatatypeProperty;
+  rdfs:domain :EIO;
+  rdfs:range <http://www.w3.org/2006/time#generalDay> .
+
+:hasFirstName a owl:DatatypeProperty;
+  rdfs:domain :NaturalPerson;
+  rdfs:range xsd:string .
+
+:hasImmatriculationNumber a owl:DatatypeProperty;
+  rdfs:domain :LegalPerson;
+  rdfs:range xsd:string .
+
+:hasLastName a owl:DatatypeProperty;
+  rdfs:domain :NaturalPerson;
+  rdfs:range xsd:string .
+
+:hasPseudo a owl:DatatypeProperty;
+  rdfs:domain :Person;
+  rdfs:range xsd:string .
+
+:hasReceptionDateEIO a owl:DatatypeProperty;
+  rdfs:domain :EIO;
+  rdfs:range xsd:dateTime .
+
+:hasShortName a owl:DatatypeProperty;
+  rdfs:domain :LegalPerson;
+  rdfs:range xsd:string .
+
+:isAuthorizedLaw a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean;
+  rdfs:comment "indicates the fact that an action is authorized by Union or Member State law" .
+
+:isNecessary a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean .
+
+:isObligatory a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean .
+
+:isPendingLegalRemedy a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean .
+
+:isPermitted a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean .
+
+:isProhibited a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean .
+
+:isTemporary a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean .
+
+:protectsVitalInterests a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean;
+  rdfs:comment "!! Il existe actuellement aussi une Object Properties pour les interets vitaux" .
+
+:requestedDecoding a owl:DatatypeProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range xsd:boolean .
+
+:requestedDecryption a owl:DatatypeProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range xsd:boolean .
+
+:requestedTranscript a owl:DatatypeProperty;
+  rdfs:domain :InvestigationMeasure;
+  rdfs:range xsd:boolean .
+
+:writtenTraces a owl:DatatypeProperty;
+  rdfs:domain :Action;
+  rdfs:range xsd:boolean;
+  rdfs:comment "the means of executing the action should produce a written record" .
+
+nrv:Compliance a owl:Class;
+  rdfs:subClassOf lrmlmm:FactualStatement .
+
+nrv:CompliantRequirement a owl:Class;
+  rdfs:subClassOf nrv:ViolableRequirement;
+  owl:equivalentClass _:node49 .
+
+nrv:Violation a owl:Class;
+  rdfs:subClassOf lrmlmm:FactualStatement .
+
+nrv:ViolatedRequirement a owl:Class;
+  rdfs:subClassOf nrv:ViolableRequirement;
+  owl:equivalentClass _:node53 .
+
+nrv:Modality a owl:Class .
+
+nrv:NonViolableRequirement a owl:Class;
+  rdfs:subClassOf :RegulativeStatement .
+
+:AccessData a owl:Class;
+  rdfs:subClassOf :Data .
+
+:Processing a owl:Class;
+  rdfs:subClassOf :Action .
+
+:AddressData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:SubscriberData a owl:Class;
+  rdfs:subClassOf :Data .
+
+:BankAccountInfoObtaining a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:CommonMeasure a owl:Class;
+  rdfs:subClassOf :InvestigationMeasure .
+
+:BankingInfoObtaining a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:BaseStationIdentityData a owl:Class;
+  rdfs:subClassOf :InternetData, :TelephonyData .
+
+:InternetData a owl:Class;
+  rdfs:subClassOf :TrafficData .
+
+:TelephonyData a owl:Class;
+  rdfs:subClassOf :TrafficData .
+
+:BiometricData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:SensitivePersonalData a owl:Class;
+  rdfs:subClassOf :PersonalData .
+
+:BirthYearData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:BrowserData a owl:Class;
+  rdfs:subClassOf :RoutingData .
+
+:RoutingData a owl:Class;
+  rdfs:subClassOf :InternetData .
+
+:CallAttemptsData a owl:Class;
+  rdfs:subClassOf :TelephonyData .
+
+:CallsDuration a owl:Class;
+  rdfs:subClassOf :TelephonyData .
+
+:CommunicationInterceptionNotification a owl:Class;
+  rdfs:subClassOf :InvestigationProcess;
+  rdfs:label "Communication interception notification"@en, "Notification d'interception de communications"@fr .
+
+:InvestigationProcess a owl:Class;
+  rdfs:subClassOf :Procedure .
+
+:CommunicationMean a owl:Class .
+
+:ConstitutiveStatement a owl:Class;
+  rdfs:subClassOf nrv:LogicalFormula;
+  rdfs:comment "Definition of concepts and ideas in a regulation" .
+
+:ContactData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:ContactListData a owl:Class;
+  rdfs:subClassOf :TransactionData .
+
+:TransactionData a owl:Class;
+  rdfs:subClassOf :Data .
+
+:ContentData a owl:Class;
+  rdfs:subClassOf :Data .
+
+:CovertInvestigation a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:CriminalOrganization a owl:Class;
+  rdfs:subClassOf :Organization .
+
+:DataAcquisition a owl:Class;
+  rdfs:subClassOf :Acquisition, :DataRelatedAction .
+
+:DataRelatedAction a owl:Class;
+  rdfs:subClassOf :Action .
+
+:DataStorageChange a owl:Class;
+  rdfs:subClassOf :Transmission, :DataRelatedAction .
+
+:DataTransmission a owl:Class;
+  rdfs:subClassOf :Transmission, :DataRelatedAction .
+
+:DataVolume a owl:Class;
+  rdfs:subClassOf :InternetData .
+
+:DestinationIPData a owl:Class;
+  rdfs:subClassOf :RoutingData .
+
+:DetaineeTransfer a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:DeviceBackupsData a owl:Class;
+  rdfs:subClassOf :ContentData .
+
+:Drugs a owl:Class;
+  rdfs:comment "narcotic, psychotropic"@en, "stupéfiant, psychotrope"@fr .
+
+:EIOReceiptConfirmation a owl:Class;
+  rdfs:subClassOf :InvestigationProcess;
+  rdfs:label "Confirmation de réception de la décision d'enquête"@fr, "European Investigation Order Receipt Confirmation"@en .
+
+:EPOC a owl:Class;
+  rdfs:subClassOf :Procedure;
+  rdfs:label "Evidence Production"@en, "Production de preuves"@fr .
+
+:EPOC-PR a owl:Class;
+  rdfs:subClassOf :Procedure;
+  rdfs:label "Conservation de preuves"@fr, "Evidence Conservation"@en .
+
+:EmergencySituation a owl:Class;
+  rdfs:subClassOf :Situation .
+
+:EthnicOriginData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:Form a owl:Class;
+  rdfs:subClassOf :Document .
+
+:GeneticData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:HeaderData a owl:Class;
+  rdfs:subClassOf :RoutingData .
+
+:HealthData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:HostingData a owl:Class;
+  rdfs:subClassOf :TrafficData .
+
+:TrafficData a owl:Class;
+  rdfs:subClassOf :TransactionData .
+
+:IMEIData a owl:Class;
+  rdfs:subClassOf <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData>;
+  rdfs:label "International Mobile Equipment Identity" .
+
+<http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData>
+  a owl:Class;
+  rdfs:subClassOf :TelephonyData .
+
+:IMSIData a owl:Class;
+  rdfs:subClassOf <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData>;
+  rdfs:label "International Mobile Subscriber Identity" .
+
+:IPConnectionLogsData a owl:Class;
+  rdfs:subClassOf :AccessData .
+
+:IPData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:IPIdentification a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:IdentityCheckData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:InabilityRequestExecution a owl:Class;
+  rdfs:subClassOf :Procedure;
+  rdfs:label "Impossibilité d'exécuter une requête"@fr, "Inability to execute request"@en .
+
+:InfoExecutorObtaining a owl:Class;
+  rdfs:subClassOf :CommonMeasure;
+  rdfs:comment "obtaining info in possession of the executor" .
+
+:InfoPoliceDatabaseObtaining a owl:Class;
+  rdfs:subClassOf :CommonMeasure;
+  rdfs:comment "Obtaining info in a police database" .
+
+:IssuesData a owl:Class;
+  rdfs:subClassOf :HostingData .
+
+:Judge a owl:Class;
+  rdfs:subClassOf :JudicialAuthority;
+  rdfs:label "Judge, court or investigating judge"@en .
+
+:JudicialAuthority a owl:Class;
+  rdfs:subClassOf :Authority;
+  rdfs:label "Judicial Authority"@en, "Legal Authority"@en .
+
+:LegalCode a owl:Class;
+  rdfs:subClassOf :LawText .
+
+:Status a owl:Class .
+
+:LegalProvision a owl:Class;
+  rdfs:subClassOf :LawText .
+
+:Legislation a owl:Class;
+  rdfs:subClassOf :LawText .
+
+:LogfilesData a owl:Class;
+  rdfs:subClassOf :HostingData .
+
+:MACAddressData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:MailBoxData a owl:Class;
+  rdfs:subClassOf :ContentData .
+
+:MaterialSeizure a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:MeanNotLeavingWrittenTraces a owl:Class;
+  rdfs:subClassOf :CommunicationMean .
+
+:MessageIdentityData a owl:Class;
+  rdfs:subClassOf :RoutingData .
+
+:MessageLogData a owl:Class;
+  rdfs:subClassOf :ContentData .
+
+:NameData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:NonEmergencySituation a owl:Class;
+  rdfs:subClassOf :Situation .
+
+:NonReal-timeEvidence a owl:Class;
+  rdfs:subClassOf :Evidence;
+  rdfs:label "Non Real-time Evidence"@en, "Non Real-time Proof"@en .
+
+:NonSensitivePersonalData a owl:Class;
+  rdfs:subClassOf :PersonalData .
+
+:PersonalData a owl:Class;
+  rdfs:subClassOf :Data .
+
+:Notification a owl:Class .
+
+:ObligationModality a owl:Class;
+  rdfs:subClassOf nrv:DeonticModality .
+
+:ObligationStatement a owl:Class;
+  rdfs:subClassOf :RegulativeStatement, nrv:ViolableRequirement;
+  owl:equivalentClass _:node57 .
+
+:OnlinePageData a owl:Class;
+  rdfs:subClassOf :ContentData .
+
+:OnlineStorageData a owl:Class;
+  rdfs:subClassOf :ContentData .
+
+:OpenData a owl:Class;
+  rdfs:subClassOf :PublicData .
+
+:PublicData a owl:Class;
+  rdfs:subClassOf :Data .
+
+:OriginIPData a owl:Class;
+  rdfs:subClassOf :RoutingData .
+
+:OtherAuthority a owl:Class;
+  rdfs:subClassOf :Authority .
+
+:OtherMeasure a owl:Class;
+  rdfs:subClassOf :InvestigationMeasure .
+
+:PUKCodesData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:PermissionModality a owl:Class;
+  rdfs:subClassOf nrv:DeonticModality .
+
+:PermissionStatement a owl:Class;
+  rdfs:subClassOf :RegulativeStatement, nrv:NonViolableRequirement;
+  owl:equivalentClass _:node61 .
+
+:PhilosophicalBeliefData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:PhoneConferenceHearing a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:PhysicalHearing a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:PoliticalOpinionData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:PortNumberData a owl:Class;
+  rdfs:subClassOf :RoutingData .
+
+:PrepaidReloadHistoryData a owl:Class;
+  rdfs:subClassOf :TransactionData .
+
+:PrivateData a owl:Class;
+  rdfs:subClassOf :Data;
+  rdfs:comment "Data that are not public" .
+
+:ProcedureEmission a owl:Class;
+  rdfs:subClassOf :Emission, :ProcedureRelatedAction .
+
+:ProcedureRelatedAction a owl:Class;
+  rdfs:subClassOf :Action .
+
+:ProcedureTransmission a owl:Class;
+  rdfs:subClassOf :Transmission, :ProcedureRelatedAction .
+
+:ProfileData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:ProhibitionModality a owl:Class;
+  rdfs:subClassOf nrv:DeonticModality .
+
+:ProhibitionStatement a owl:Class;
+  rdfs:subClassOf :RegulativeStatement, nrv:ViolableRequirement;
+  owl:equivalentClass _:node65 .
+
+:ProsecutorSubscribersAccess a owl:Class;
+  rdfs:subClassOf :JudicialAuthority;
+  rdfs:label "Prosecutor (subscribers and access)"@en .
+
+:ProsecutorTransactionContent a owl:Class;
+  rdfs:subClassOf :JudicialAuthority;
+  rdfs:label "Prosecutor (transactions and content)"@en .
+
+:PurchaseHistoryData a owl:Class;
+  rdfs:subClassOf :TransactionData .
+
+:RacialOriginData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:Real-timeEvidence a owl:Class;
+  rdfs:subClassOf :Evidence;
+  rdfs:label "Real-time Evidence"@en, "Real-time Proof"@en .
+
+:RealTimeEvidenceGathering a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:ReligiousBeliefData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:SIMNumberData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:ServersData a owl:Class;
+  rdfs:subClassOf :ContentData .
+
+:ServiceUsageData a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+:SexLifeData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:SexualOrientationData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:TelecomInterception a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:TelephoneIdentification a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:TeleserviceUsedData a owl:Class;
+  rdfs:subClassOf :TelephonyData .
+
+:TimeData a owl:Class;
+  rdfs:subClassOf :TelephonyData .
+
+:TradeUnionMembershipData a owl:Class;
+  rdfs:subClassOf :SensitivePersonalData .
+
+:VideoConferenceHearing a owl:Class;
+  rdfs:subClassOf :CommonMeasure .
+
+:VocalMessagesData a owl:Class;
+  rdfs:subClassOf :ContentData .
+
+:Weaponry a owl:Class;
+  rdfs:subClassOf :PurchaseHistoryData;
+  rdfs:comment "arme, munition, explosif"@fr, "weapon, ammunition, explosive"@en .
+
+<http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Credit&DebitCardData>
+  a owl:Class;
+  rdfs:subClassOf :SubscriberData .
+
+adr:AddressComponent a owl:Class;
+  rdfs:label "address component";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:PrimaryAddressNumber a owl:Class;
+  rdfs:subClassOf adr:AddressComponent;
+  rdfs:comment "address component that identifies a location with respect to a given street";
+  rdfs:label "primary address number";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:SecondaryUnit a owl:Class;
+  rdfs:subClassOf adr:AddressComponent;
+  rdfs:comment "address component that identifies an individual unit within a larger structure, such as an apartment, office, hangar, slip, mailbox, and so forth, at a given address";
+  rdfs:label "secondary unit";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:SecondaryUnitIndicator a owl:Class;
+  rdfs:subClassOf adr:AddressComponent;
+  rdfs:comment "index to the specific unit within a secondary unit, such as a building or apartment, at a particular street address";
+  rdfs:label "secondary unit indicator";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StreetAddress a owl:Class;
+  rdfs:subClassOf adr:AddressComponent;
+  rdfs:comment "index to a location that consists of a primary address number, predirectional, street name, suffix, postdirectional, and an optional secondary unit";
+  rdfs:label "street address";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StreetName a owl:Class;
+  rdfs:subClassOf adr:AddressComponent;
+  rdfs:comment "identifier for a street in some context (city, municipality, geographic region)";
+  rdfs:label "street name";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StreetSuffix a owl:Class;
+  rdfs:subClassOf adr:AddressComponent;
+  rdfs:comment "suffix that classifies road types (street, avenue, road,...)";
+  rdfs:label "street suffix";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StructureName a owl:Class;
+  rdfs:subClassOf adr:AddressComponent;
+  rdfs:comment "name for a building, house, complex, shopping center,...";
+  rdfs:label "structure name";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+:EJN a :CommunicationMean, owl:NamedIndividual;
+  rdfs:label "European Judicial Network" .
+
+:Forgery_of_administrative_documents a :Offence, owl:NamedIndividual .
+
+:Participation_in_criminal_organization a :GroundOfJustification, owl:NamedIndividual .
+
+:act_of_sabotage a :Offence, owl:NamedIndividual .
+
+:armed_robbery a :Offence, owl:NamedIndividual .
+
+:arson a :Offence, owl:NamedIndividual .
+
+:assistance_in_the_entry_and_stay_of_irregular_migrants a :Offence, owl:NamedIndividual .
+
+:banking_monitoring a :Real-timeEvidence, owl:NamedIndividual .
+
+:compliance_with_the_injunction_would_violate_the_legislation_of_a_third_country a
+    :GroundOfJustification, owl:NamedIndividual .
+
+:corruption a :Offence, owl:NamedIndividual .
+
+:counterfeiting a :Offence, owl:NamedIndividual .
+
+:crimes_within_the_jurisdiction_of_the_International_Criminal_Court a :Offence, owl:NamedIndividual .
+
+:cybercriminality a :Offence, owl:NamedIndividual .
+
+:de_facto_impossibility a :GroundOfJustification, owl:NamedIndividual .
+
+:delivery_monitoring a :Real-timeEvidence, owl:NamedIndividual .
+
+:drug_and_psychotropic_substances_trafficking a :Offence, owl:NamedIndividual .
+
+:environmental_crimes a :Offence, owl:NamedIndividual .
+
+:evidence_concealment a :EmergencySituation, owl:NamedIndividual .
+
+:evidence_destruction a :EmergencySituation, owl:NamedIndividual .
+
+:expert a :Role, owl:NamedIndividual .
+
+:extorsion_of_funds a :Offence, owl:NamedIndividual .
+
+:force_majeure a :GroundOfJustification, owl:NamedIndividual .
+
+:forgery_of_means_of_payment a :Offence, owl:NamedIndividual .
+
+:fraud a :Offence, owl:NamedIndividual .
+
+:hacking a :Offence, owl:NamedIndividual .
+
+:hostage-taking a :Offence, owl:NamedIndividual .
+
+:human_trafficking a :Offence, owl:NamedIndividual .
+
+:illegal_hijacking_of_aircraft a :Offence, owl:NamedIndividual .
+
+:illegal_hijacking_of_vessels a :Offence, owl:NamedIndividual .
+
+:illegal_trafficking_of_cultural_property a :Offence, owl:NamedIndividual .
+
+:illicit_trafficking_of_nuclear_and_radioactive_materials a :Offence, owl:NamedIndividual .
+
+:immediate_transmission a :ExecutionMethod, owl:NamedIndividual .
+
+:incomplete_injunction a :GroundOfJustification, owl:NamedIndividual .
+
+:injunction_appears_to_be_abusive a :GroundOfJustification, owl:NamedIndividual .
+
+:injunction_appears_to_violate_the_charter a :GroundOfJustification, owl:NamedIndividual .
+
+:injunction_does_not_concern_data_stored_at_the_time_of_receipt a :GroundOfJustification,
+    owl:NamedIndividual .
+
+:injunction_not_issued_by_a_competent_authority a :GroundOfJustification, owl:NamedIndividual .
+
+:injunction_not_issued_for_a_valid_offence a :GroundOfJustification, owl:NamedIndividual .
+
+:injunction_not_validated_by_a_competent_authority a :GroundOfJustification, owl:NamedIndividual .
+
+:injunction_with_lack_of_information a :GroundOfJustification, owl:NamedIndividual .
+
+:injunction_with_obvious_errors a :GroundOfJustification, owl:NamedIndividual .
+
+:kidnapping a :Offence, owl:NamedIndividual .
+
+:man a :Gender, owl:NamedIndividual .
+
+:money_laundering a :Offence, owl:NamedIndividual .
+
+:murder a :Offence, owl:NamedIndividual .
+
+:near_trial a :GroundOfJustification, :EmergencySituation, owl:NamedIndividual .
+
+:organized_theft a :Offence, owl:NamedIndividual .
+
+:participation_in_a_terrorist_organization a :Offence, owl:NamedIndividual .
+
+:pornography a :Offence, owl:NamedIndividual .
+
+:racism_and_xenophobia a :Offence, owl:NamedIndividual .
+
+:racketeering a :Offence, owl:NamedIndividual .
+
+:rape a :Offence, owl:NamedIndividual .
+
+:recording_and_subsequent_transmission a :ExecutionMethod, owl:NamedIndividual .
+
+:remand_in_custody a :GroundOfJustification, owl:NamedIndividual .
+
+:risk_of_data_deletion a :GroundOfJustification, owl:NamedIndividual .
+
+:risk_of_evidence_alteration a :GroundOfJustification, owl:NamedIndividual .
+
+:scam a :Offence, owl:NamedIndividual .
+
+:sequestration a :Offence, owl:NamedIndividual .
+
+:serious_bodily_harm a :Offence, owl:NamedIndividual .
+
+:service_not_covered_by_the_regulation a :GroundOfJustification, owl:NamedIndividual .
+
+:sexual_exploitation_of_children a :Offence, owl:NamedIndividual .
+
+:suspect a :Role, owl:NamedIndividual .
+
+:telecommunications_interception_notification a :Notification, owl:NamedIndividual .
+
+:terrorism a :Offence, owl:NamedIndividual .
+
+:third_party a :Role, owl:NamedIndividual .
+
+:threat_on_someone a :GroundOfJustification, owl:NamedIndividual .
+
+:threat_to_technical_infrastructure a :GroundOfJustification, owl:NamedIndividual .
+
+:traffic_of_ammunition a :Offence, owl:NamedIndividual .
+
+:traffic_of_explosives a :Offence, owl:NamedIndividual .
+
+:traffic_of_fake a :Offence, owl:NamedIndividual .
+
+:traffic_of_weapons a :Offence, owl:NamedIndividual .
+
+:trafficking_in_human_organs_and_tissues a :Offence, owl:NamedIndividual .
+
+:trafficking_of_stolen_vehicles a :Offence, owl:NamedIndividual .
+
+:victim a :Role, owl:NamedIndividual .
+
+:witness a :Role, owl:NamedIndividual .
+
+:woman a :Gender, owl:NamedIndividual .
+
+:storage_change_01 a :DataStorageChange .
+
+:dataset_01 a :DataSet .
+
+:data_01 a :NonSensitivePersonalData, :PrivateData .
+
+:storage_change_02 a :DataStorageChange .
+
+:dataset_02 a :DataSet .
+
+:data_02 a :SensitivePersonalData, :PrivateData .
+
+:data_03 a :SensitivePersonalData, :PrivateData .
+
+:storage_change_02bis a :DataStorageChange .
+
+:dataset_02bis a :DataSet .
+
+:data_02bis a :SensitivePersonalData, :PublicData .
+
+:storage_change_02ter a :DataStorageChange .
+
+:dataset_02ter a :DataSet .
+
+:data_03bis a :SensitivePersonalData, :PublicData .
+
+:storage_change_03 a :DataStorageChange .
+
+:storage_change_04 a :DataStorageChange .
+
+_:node49 a owl:Class .
+
+_:node51 a owl:Restriction .
+
+_:node53 a owl:Class .
+
+_:node55 a owl:Restriction .
+
+_:node57 a owl:Class .
+
+_:node59 a owl:Restriction .
+
+_:node61 a owl:Class .
+
+_:node63 a owl:Restriction .
+
+_:node65 a owl:Class .
+
+_:node67 a owl:Restriction .
+
+_:node69 a owl:Class .
+
+_:node71 a owl:Restriction .
+
+:EIO_emission_01 a :ProcedureEmission .
+
+:EIO_01 a :EIO .
+
+:measure_01 a :InvestigationMeasure, :MaterialSeizure .
+
+:EIO_emission_02 a :ProcedureEmission .
+
+:EIO_02 a :EIO .
+
+:measure_02 a :InvestigationMeasure, :TelecomInterception .
+
+:EIO_emission_03 a :ProcedureEmission .
+
+:EIO_emission_04 a :ProcedureTransmission .
+
+:EIO_emission_05 a :ProcedureTransmission .
+
+:action_suspension_01 a :ActionSuspension .
+
+:evidence_transmission_01 a :DataTransmission .
+
+:EIO_ref_01 a :EIO .
+
+:suspect04 a :Person .
+
+:action_suspension_02 a :ActionSuspension .
+
+:action_suspension_03 a :ActionSuspension .
+
+:urgent_situation01 a :EmergencySituation .
+
+:action_suspension_05 a :ActionSuspension .
+
+owl:topObjectProperty rdfs:domain lrmlmm:LegalRuleMLDocument;
+  rdfs:range lrmlmm:Sources .
+
+_:node50 rdf:first nrv:ViolableRequirement;
+  rdf:rest _:node52 .
+
+_:node52 rdf:first _:node51;
+  rdf:rest rdf:nil .
+
+_:node54 rdf:first nrv:ViolableRequirement;
+  rdf:rest _:node56 .
+
+_:node56 rdf:first _:node55;
+  rdf:rest rdf:nil .
+
+_:node58 rdf:first :RegulativeStatement;
+  rdf:rest _:node60 .
+
+_:node60 rdf:first _:node59;
+  rdf:rest rdf:nil .
+
+_:node62 rdf:first :RegulativeStatement;
+  rdf:rest _:node64 .
+
+_:node64 rdf:first _:node63;
+  rdf:rest rdf:nil .
+
+_:node66 rdf:first :RegulativeStatement;
+  rdf:rest _:node68 .
+
+_:node68 rdf:first _:node67;
+  rdf:rest rdf:nil .
+
+_:node70 rdf:first nrv:LogicalFormula;
+  rdf:rest _:node72 .
+
+_:node72 rdf:first _:node71;
+  rdf:rest rdf:nil .
+
+sparql-service-description:BasicFederatedQuery rdfs:comment "sd:BasicFederatedQuery, when used as the object of the sd:feature property, indicates that the SPARQL service supports basic federated query using the SERVICE keyword as defined by SPARQL 1.1 Federation Extensions.";
+  rdfs:label "Basic Federated Query" .
+
+sparql-service-description:DereferencesURIs rdfs:comment "sd:DereferencesURIs, when used as the object of the sd:feature property, indicates that a SPARQL service will dereference URIs used in FROM/FROM NAMED and USING/USING NAMED clauses and use the resulting RDF in the dataset during query evaluation.";
+  rdfs:label "Dereferences URIs" .
+
+sparql-service-description:EmptyGraphs rdfs:comment "sd:EmptyGraphs, when used as the object of the sd:feature property, indicates that the underlying graph store supports empty graphs. A graph store that supports empty graphs MUST NOT remove graphs that are left empty after triples are removed from them.";
+  rdfs:label "Empty Graphs" .
+
+sparql-service-description:RequiresDataset rdfs:comment "sd:RequiresDataset, when used as the object of the sd:feature property, indicates that the SPARQL service requires an explicit dataset declaration (based on either FROM/FROM NAMED clauses in a query, USING/USING NAMED clauses in an update, or the appropriate SPARQL Protocol parameters).";
+  rdfs:label "Requires Dataset" .
+
+sparql-service-description:SPARQL10Query rdfs:comment "sd:SPARQL10Query is an sd:Language representing the SPARQL 1.0 Query language.";
+  rdfs:label "SPARQL 1.0 Query" .
+
+sparql-service-description:SPARQL11Query rdfs:comment "sd:SPARQL11Query is an sd:Language representing the SPARQL 1.1 Query language.";
+  rdfs:label "SPARQL 1.1 Query" .
+
+sparql-service-description:SPARQL11Update rdfs:comment "sd:SPARQLUpdate is an sd:Language representing the SPARQL 1.1 Update language.";
+  rdfs:label "SPARQL 1.1 Update" .
+
+sparql-service-description:UnionDefaultGraph rdfs:comment "sd:UnionDefaultGraph, when used as the object of the sd:feature property, indicates that the default graph of the dataset used during query and update evaluation (when an explicit dataset is not specified) is comprised of the union of all the named graphs in that dataset.";
+  rdfs:label "Union Default Graph" .
+
+sparql-service-description:availableGraphs rdfs:comment "Relates an instance of sd:Service to a description of the graphs which are allowed in the construction of a dataset either via the SPARQL Protocol, with FROM/FROM NAMED clauses in a query, or with USING/USING NAMED in an update request, if the service limits the scope of dataset construction.";
+  rdfs:label "available graph descriptions" .
+
+sparql-service-description:defaultGraph rdfs:comment "Relates an instance of sd:Dataset to the description of its default graph.";
+  rdfs:label "default graph" .
+
+sparql-service-description:entailmentRegime rdfs:comment "Relates a named graph description with a resource representing an entailment regime used for basic graph pattern matching over that graph.";
+  rdfs:label "entailment regime" .
+
+sparql-service-description:graph rdfs:comment "Relates a named graph to its graph description.";
+  rdfs:label "graph" .
+
+sparql-service-description:namedGraph rdfs:comment "Relates an instance of sd:GraphCollection (or its subclass sd:Dataset) to the description of one of its named graphs. The description of such a named graph MUST include the sd:name property and MAY include the sd:graph property.";
+  rdfs:label "named graph" .
+
+sparql-service-description:supportedEntailmentProfile rdfs:comment "Relates a named graph description with a resource representing a supported profile of the entailment regime (as declared by sd:entailmentRegime) used for basic graph pattern matching over that graph.";
+  rdfs:label "supported entailment profile" .
+
+:EIO_01 :asksMeasureEIO :measure_01 .
+
+:EIO_02 :asksMeasureEIO :measure_02 .
+
+:dataset_01 :containsData :data_01;
+  :hasDestinationData :authority_1;
+  :hasOriginData :stor_entity_1 .
+
+:dataset_02 :containsData :data_02, :data_03;
+  :hasDestinationData :authority_1;
+  :hasOriginData :stor_entity_1 .
+
+:dataset_02bis :containsData :data_03, :data_02bis;
+  :hasDestinationData :authority_1;
+  :hasOriginData :stor_entity_1 .
+
+:dataset_02ter :containsData :data_02bis, :data_03bis;
+  :hasDestinationData :authority_1;
+  :hasOriginData :stor_entity_1 .
+
+:storage_change_01 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :involvesData :dataset_01;
+  :isAuthorizedLaw true;
+  :isNecessary true;
+  :protectsVitalInterests false .
+
+:storage_change_02 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :involvesData :dataset_02;
+  :isAuthorizedLaw true;
+  :isNecessary true;
+  :protectsVitalInterests false .
+
+:storage_change_02bis :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :involvesData :dataset_02bis;
+  :isAuthorizedLaw false;
+  :isNecessary true;
+  :protectsVitalInterests false .
+
+:storage_change_02ter :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :involvesData :dataset_02ter;
+  :isAuthorizedLaw false;
+  :isNecessary true;
+  :protectsVitalInterests false .
+
+:storage_change_03 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :involvesData :dataset_02;
+  :isAuthorizedLaw true;
+  :isNecessary false;
+  :protectsVitalInterests false .
+
+:storage_change_04 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :involvesData :dataset_02;
+  :protectsVitalInterests true .
+
+:action_suspension_01 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :hasValidationAuthorityAction :valid_auth_1;
+  :suspends :evidence_transmission_01;
+  :isPendingLegalRemedy true .
+
+:action_suspension_02 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :hasValidationAuthorityAction :valid_auth_1;
+  :suspends :evidence_transmission_01 .
+
+:action_suspension_03 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :hasValidationAuthorityAction :valid_auth_1;
+  :isInSituation :urgent_situation01;
+  :suspends :evidence_transmission_01;
+  :isPendingLegalRemedy true .
+
+:action_suspension_05 :hasExecutionAuthorityAction :exec_auth_1;
+  :hasIssueAuthorityAction :authority_1;
+  :hasValidationAuthorityAction :valid_auth_1;
+  :isInSituation :urgent_situation01;
+  :suspends :evidence_transmission_01;
+  :isPendingLegalRemedy true .
+
+:EIO_emission_01 :hasExecutionAuthorityEIO :exec_auth_1;
+  :hasIssueAuthorityEIO :authority_1;
+  :hasValidationAuthorityEIO :valid_auth_1;
+  :involvesProcedure :EIO_01;
+  :isNecessary true .
+
+:EIO_emission_02 :hasExecutionAuthorityEIO :exec_auth_1;
+  :hasIssueAuthorityEIO :authority_1;
+  :hasValidationAuthorityEIO :valid_auth_1;
+  :involvesProcedure :EIO_02 .
+
+:EIO_emission_03 :hasExecutionAuthorityEIO :exec_auth_1;
+  :hasIssueAuthorityEIO :authority_1;
+  :hasValidationAuthorityEIO :valid_auth_1;
+  :involvesProcedure :EIO_02;
+  :isAuthorizedLaw true;
+  :isNecessary true .
+
+:EIO_emission_04 :hasExecutionAuthorityEIO :exec_auth_1;
+  :hasIssueAuthorityEIO :authority_1;
+  :hasValidationAuthorityEIO :valid_auth_1;
+  :involvesProcedure :EIO_02;
+  :usesComMean :EJN;
+  :isAuthorizedLaw true;
+  :isNecessary true .
+
+:EIO_emission_05 :hasExecutionAuthorityEIO :exec_auth_1;
+  :hasIssueAuthorityEIO :authority_1;
+  :hasValidationAuthorityEIO :valid_auth_1;
+  :involvesProcedure :EIO_02;
+  :usesComMean :Discord;
+  :isAuthorizedLaw true;
+  :isNecessary true .
+
+:measure_01 :hasJustificationMeasure :risk_of_evidence_alteration;
+  :involvesLocationMeasure :address_01;
+  :involvesPersonMeasure :Arthur_Watts .
+
+:measure_02 :hasJustificationMeasure :participation_in_criminal_organization;
+  :involvesPersonMeasure :Arthur_Watts .
+
+:evidence_transmission_01 :involvesEvidence :evidence_set_01;
+  :involvesProcedure :EIO_ref_01 .
+
+:EIO_ref_01 :wouldCauseDamageTo :suspect_04 .
+
+_:node49 owl:intersectionOf _:node50 .
+
+_:node53 owl:intersectionOf _:node54 .
+
+_:node57 owl:intersectionOf _:node58 .
+
+_:node61 owl:intersectionOf _:node62 .
+
+_:node65 owl:intersectionOf _:node66 .
+
+_:node69 owl:intersectionOf _:node70 .
+
+_:node51 owl:onProperty nrv:hasViolation;
+  owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger;
+  owl:onClass nrv:Violation .
+
+_:node55 owl:onProperty nrv:hasViolation;
+  owl:onClass nrv:Violation;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger .
+
+_:node59 owl:onProperty :containsModality;
+  owl:someValuesFrom :ObligationModality .
+
+_:node63 owl:onProperty :containsModality;
+  owl:someValuesFrom :PermissionModality .
+
+_:node67 owl:onProperty :containsModality;
+  owl:someValuesFrom :ProhibitionModality .
+
+_:node71 owl:onProperty :containsModality;
+  owl:someValuesFrom nrv:DeonticModality .
+
+nrv:CompliantRequirement owl:disjointWith nrv:ViolatedRequirement .
+
+:NonSensitivePersonalData owl:disjointWith :SensitivePersonalData .
+
+:PrivateData owl:disjointWith :PublicData .

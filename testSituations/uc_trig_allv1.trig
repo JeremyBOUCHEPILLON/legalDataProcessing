@@ -1,0 +1,272 @@
+@prefix :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#> .
+@prefix lrmlmm:  <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#> .
+
+
+{
+
+   :storage_change_01
+       a :DataStorageChange;
+       :involvesData :dataset_01;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :isNecessary "true"^^xsd:boolean;
+       :isAuthorizedLaw "true"^^xsd:boolean;
+       :protectsVitalInterests "false"^^xsd:boolean.
+       
+   :dataset_01 
+       a :DataSet;
+       :containsData :data_01;
+       :hasOriginData :stor_entity_1;
+       :hasDestinationData :authority_1.
+
+   :data_01 
+       a :NonSensitivePersonalData;
+       a :PrivateData.
+
+
+
+
+
+   :storage_change_02
+       a :DataStorageChange;
+       :involvesData :dataset_02;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :isNecessary "true"^^xsd:boolean;
+       :isAuthorizedLaw "true"^^xsd:boolean;
+       :protectsVitalInterests "false"^^xsd:boolean.
+       
+   :dataset_02 
+       a :DataSet;
+       :containsData :data_02;
+       :containsData :data_03;
+       :hasOriginData :stor_entity_1;
+       :hasDestinationData :authority_1.
+
+   :data_02 
+       a :SensitivePersonalData;
+       a :PrivateData.
+
+   :data_03 
+       a :SensitivePersonalData;
+       a :PrivateData.
+
+
+
+
+   :storage_change_02bis
+       a :DataStorageChange;
+       :involvesData :dataset_02bis;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :isNecessary "true"^^xsd:boolean;
+       :isAuthorizedLaw "false"^^xsd:boolean;
+       :protectsVitalInterests "false"^^xsd:boolean.
+       
+   :dataset_02bis 
+       a :DataSet;
+       :containsData :data_02bis;
+       :containsData :data_03;
+       :hasOriginData :stor_entity_1;
+       :hasDestinationData :authority_1.
+
+   :data_02bis 
+       a :SensitivePersonalData;
+       a :PublicData.
+
+
+
+
+   :storage_change_02ter
+       a :DataStorageChange;
+       :involvesData :dataset_02ter;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :isNecessary "true"^^xsd:boolean;
+       :isAuthorizedLaw "false"^^xsd:boolean;
+       :protectsVitalInterests "false"^^xsd:boolean.
+       
+   :dataset_02ter 
+       a :DataSet;
+       :containsData :data_02bis;
+       :containsData :data_03bis;
+       :hasOriginData :stor_entity_1;
+       :hasDestinationData :authority_1.
+
+
+   :data_03bis 
+       a :SensitivePersonalData;
+       a :PublicData.
+
+
+
+
+
+   :storage_change_03
+       a :DataStorageChange;
+       :involvesData :dataset_02;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :isNecessary "false"^^xsd:boolean;
+       :isAuthorizedLaw "true"^^xsd:boolean;
+       :protectsVitalInterests "false"^^xsd:boolean.
+
+
+
+
+   :storage_change_04
+       a :DataStorageChange;
+       :involvesData :dataset_02;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :protectsVitalInterests "true"^^xsd:boolean.
+
+
+
+
+
+   :EIO_emission_01
+       a :ProcedureEmission;
+       :involvesProcedure :EIO_01;
+       :hasIssueAuthorityEIO :authority_1;
+       :hasExecutionAuthorityEIO :exec_auth_1;
+       :hasValidationAuthorityEIO :valid_auth_1;
+       :isNecessary "true"^^xsd:boolean.      
+
+   :EIO_01 
+       a :EIO;
+       :asksMeasureEIO :measure_01.
+
+   :measure_01 
+       a :InvestigationMeasure;
+       a :MaterialSeizure;
+       :hasJustificationMeasure :risk_of_evidence_alteration;
+       :involvesPersonMeasure :Arthur_Watts;
+       :involvesLocationMeasure :address_01.
+
+
+
+
+
+   :EIO_emission_02
+       a :ProcedureEmission;
+       :involvesProcedure :EIO_02;
+       :hasIssueAuthorityEIO :authority_1;
+       :hasExecutionAuthorityEIO :exec_auth_1;
+       :hasValidationAuthorityEIO :valid_auth_1.
+       
+   :EIO_02
+       a :EIO;
+       :asksMeasureEIO :measure_02.
+
+   :measure_02
+       a :InvestigationMeasure;
+       a :TelecomInterception;
+       :hasJustificationMeasure :participation_in_criminal_organization;
+       :involvesPersonMeasure :Arthur_Watts.
+
+
+
+
+
+   :EIO_emission_03
+       a :ProcedureEmission;
+       :involvesProcedure :EIO_02;
+       :hasIssueAuthorityEIO :authority_1;
+       :hasExecutionAuthorityEIO :exec_auth_1;
+       :hasValidationAuthorityEIO :valid_auth_1;
+       :isNecessary "true"^^xsd:boolean;
+       :isAuthorizedLaw "true"^^xsd:boolean.
+
+
+
+
+   :EIO_emission_04
+       a :ProcedureTransmission;
+       :involvesProcedure :EIO_02;
+       :hasIssueAuthorityEIO :authority_1;
+       :hasExecutionAuthorityEIO :exec_auth_1;
+       :hasValidationAuthorityEIO :valid_auth_1;
+       :isNecessary "true"^^xsd:boolean;
+       :isAuthorizedLaw "true"^^xsd:boolean;
+       :usesComMean :EJN.
+
+
+
+
+   :EIO_emission_05
+       a :ProcedureTransmission;
+       :involvesProcedure :EIO_02;
+       :hasIssueAuthorityEIO :authority_1;
+       :hasExecutionAuthorityEIO :exec_auth_1;
+       :hasValidationAuthorityEIO :valid_auth_1;
+       :isNecessary "true"^^xsd:boolean;
+       :isAuthorizedLaw "true"^^xsd:boolean;
+       :usesComMean :Discord.
+
+
+
+
+
+   :action_suspension_01
+       a :ActionSuspension;
+       :suspends :evidence_transmission_01;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :hasValidationAuthorityAction :valid_auth_1;
+       :isPendingLegalRemedy "true"^^xsd:boolean.
+       
+   :evidence_transmission_01
+       a :DataTransmission;
+       :involvesEvidence :evidence_set_01;
+       :involvesProcedure :EIO_ref_01.
+
+   :EIO_ref_01
+       a :EIO;
+       :wouldCauseDamageTo :suspect_04.
+
+   :suspect04
+       a :Person.
+
+
+
+
+   :action_suspension_02
+       a :ActionSuspension;
+       :suspends :evidence_transmission_01;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :hasValidationAuthorityAction :valid_auth_1.
+
+
+
+
+
+   :action_suspension_03
+       a :ActionSuspension;
+       :suspends :evidence_transmission_01;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :hasValidationAuthorityAction :valid_auth_1;
+       :isPendingLegalRemedy "true"^^xsd:boolean;
+       :isInSituation :urgent_situation01.
+
+   :urgent_situation01
+       a :EmergencySituation.
+
+
+
+
+
+
+   :action_suspension_05
+       a :ActionSuspension;
+       :suspends :evidence_transmission_01;
+       :hasIssueAuthorityAction :authority_1;
+       :hasExecutionAuthorityAction :exec_auth_1;
+       :hasValidationAuthorityAction :valid_auth_1;
+       :isPendingLegalRemedy "true"^^xsd:boolean;
+       :isInSituation :urgent_situation01.
+
+
+}
