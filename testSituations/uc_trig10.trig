@@ -7,7 +7,9 @@
 }
 
 
-GRAPH :Situation10 { 
+GRAPH :Situation10 {
+   :Situation10 :isAbout :action_suspension_01 .
+
    :action_suspension_01
        a :ActionSuspension;
        :suspends :evidence_transmission_01;

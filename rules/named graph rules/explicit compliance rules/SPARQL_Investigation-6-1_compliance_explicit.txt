@@ -11,6 +11,7 @@ WHERE {
 	{SELECT DISTINCT ?action
 		WHERE {
 		:Investigation6_1_explicit_compliant :isApplicable ?g .
+		?g :isAbout ?action .
 		?action :isNecessary "true"^^xsd:boolean .
 		?eio :asksMeasureEIO ?measure .
 		?measure :conditionsIdem "true"^^xsd:boolean .

@@ -6,7 +6,9 @@
 :Situation02bis a lrmlmm:FactualStatement .
 }
 
-GRAPH :Situation02bis { 
+GRAPH :Situation02bis {
+   :Situation02bis :isAbout :storage_change_02bis .
+
    :storage_change_02bis
        a :DataStorageChange;
        :involvesData :dataset_02bis;

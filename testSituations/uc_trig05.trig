@@ -7,7 +7,9 @@
 }
 
 
-GRAPH :Situation05 { 
+GRAPH :Situation05 {
+   :Situation05 :isAbout :EIO_emission_01 .
+
    :EIO_emission_01
        a :ProcedureEmission;
        :involvesProcedure :EIO_01;

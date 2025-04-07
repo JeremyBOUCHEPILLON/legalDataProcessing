@@ -11,7 +11,7 @@ INSERT { graph ?g {
 	:Investigation32_1_implicit_compliant :isApplicable ?g . 
 }}
 WHERE {
-	{SELECT DISTINCT *
+	{SELECT DISTINCT ?action
 		WHERE {
 		?action a :Emission .
 		?action :involvesProcedure ?eio .

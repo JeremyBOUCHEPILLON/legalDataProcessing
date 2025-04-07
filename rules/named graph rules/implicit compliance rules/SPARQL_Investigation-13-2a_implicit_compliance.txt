@@ -8,14 +8,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 INSERT { graph ?g { :Investigation13_2a_implicit_compliant nrv:hasCompliance ?g .}}
 WHERE {
-	{SELECT DISTINCT *
+	{SELECT DISTINCT ?action
 		WHERE {
 		:Investigation13_2a_implicit_compliant :isApplicable ?g .
 		?action a :ActionSuspension .
-		FILTER NOT EXISTS {
-			?action :isPendingLegalRemedy "true"^^xsd:boolean .
-			FILTER NOT EXISTS {?eio :givesSufficientReason "true"^^xsd:boolean .}
-		}
+		?action :isPendingLegalRemedy "true"^^xsd:boolean .
+		?eio :givesSufficientReason "true"^^xsd:boolean .
 	}}
 	GRAPH ?g {?action ?p ?v .}
 }
