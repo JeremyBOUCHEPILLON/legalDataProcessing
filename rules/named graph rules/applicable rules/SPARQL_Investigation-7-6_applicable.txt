@@ -18,7 +18,6 @@ WHERE {
 		?eio a :EIO .
 		?action :toTransmission ?executingAuthority .
 		?executingAuthority :isNotCompetentFor ?eio .
-		?realExecutingAuthority :isCompetentFor ?eio .
 		OPTIONAL {?action :fromTransmission ?emittingAuthority .}
 	}}
 	GRAPH ?g {?action ?p ?v .}

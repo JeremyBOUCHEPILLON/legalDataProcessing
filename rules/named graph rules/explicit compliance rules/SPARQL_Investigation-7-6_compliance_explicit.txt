@@ -12,7 +12,9 @@ WHERE {
 		WHERE {
 		:Investigation7_6_explicit_compliant :isApplicable ?g .
 		?g :isAbout ?action .
+		?action :toTransmission ?executingAuthority .
 		?executingAuthority :mustInform ?realExecutingAuthority .
+		?realExecutingAuthority :isCompetentFor ?eio .
 	}}
 	GRAPH ?g {?action ?p ?v .}
 }

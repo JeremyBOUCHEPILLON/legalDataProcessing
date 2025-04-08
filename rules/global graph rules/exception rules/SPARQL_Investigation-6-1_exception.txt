@@ -6,10 +6,8 @@ PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sha
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
-DELETE { graph ?g { :Investigation6_1_implicit_compliant nrv:hasCompliance ?g .}}
+DELETE { :Investigation6_1_implicit_compliant nrv:hasCompliance ?situation .}
 WHERE {
-	GRAPH ?g {
-	:Investigation6_1_explicit_compliant nrv:hasCompliance ?g .
-	:Investigation6_1_implicit_compliant nrv:hasCompliance ?g .
-	}
+	:Investigation6_1_explicit_compliant nrv:hasCompliance ?situation .
+	:Investigation6_1_implicit_compliant nrv:hasCompliance ?situation .
 }

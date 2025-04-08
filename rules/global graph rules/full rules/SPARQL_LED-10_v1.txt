@@ -6,20 +6,17 @@ PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sha
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
-INSERT { graph ?g { :LED10 nrv:hasCompliance ?g }}
+INSERT { :LED10 nrv:hasCompliance ?situation }}
 WHERE { 
-	{SELECT DISTINCT ?action
-		WHERE {
-		?action a :Processing .
-		?action :involvesData ?dataset .
-    		?dataset :containsData ?data .
-    		?data a :SensitivePersonalData .
-    		?action :isNecessary "true"^^xsd:boolean .
-    		{ ?action :isAuthorizedLaw "true"^^xsd:boolean }
-    		UNION
-    		{ ?action :protectsVitalInterests "true"^^xsd:boolean }
-    		UNION
-    		{?data a :PublicData }
-    }}
-	GRAPH ?g {?action ?p ?v.}
+	?situation :isAbout ?action .
+	?action a :Processing .
+	?action :involvesData ?dataset .
+    	?dataset :containsData ?data .
+    	?data a :SensitivePersonalData .
+    	?action :isNecessary "true"^^xsd:boolean .
+    	{ ?action :isAuthorizedLaw "true"^^xsd:boolean }
+    	UNION
+    	{ ?action :protectsVitalInterests "true"^^xsd:boolean }
+    	UNION
+    	{?data a :PublicData }
 }

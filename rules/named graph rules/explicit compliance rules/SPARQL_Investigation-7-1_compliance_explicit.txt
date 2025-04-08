@@ -12,6 +12,7 @@ WHERE {
 		WHERE {
 		:Investigation7_1_explicit_compliant :isApplicable ?g .
 		?g :isAbout ?action .
+		?action :usesComMean ?mean .
 		?mean a :MeanLeavingWrittenTraces .
 	}}
 	GRAPH ?g {?action ?p ?v .}
