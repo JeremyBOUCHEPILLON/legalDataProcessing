@@ -9,7 +9,7 @@
 
 GRAPH :Situation01 {
    :Situation01 :isAbout :storage_change_01 .
- 
+
    :storage_change_01
        a :DataStorageChange;
        :involvesData :dataset_01;

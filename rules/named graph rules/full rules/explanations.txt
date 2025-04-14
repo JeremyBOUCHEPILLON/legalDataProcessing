@@ -1,3 +1,0 @@
-This folder contains the formalized explicit rules obtained from the studied regulations.
-These rules are the full rules without the separation between applicability and compliance
-The rules are expressed in SPARQL.

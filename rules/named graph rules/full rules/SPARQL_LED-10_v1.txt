@@ -6,10 +6,11 @@ PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sha
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
-INSERT { graph ?g { :LED10 nrv:hasCompliance ?g .}}
+INSERT { graph ?situation { :LED10 nrv:hasCompliance ?situation .}}
 WHERE { 
 	{SELECT DISTINCT ?action
 		WHERE {
+		?situation :isAbout ?action .
 		?action a :Processing .
 		?action :involvesData ?dataset .
     		?dataset :containsData ?data .
@@ -21,5 +22,5 @@ WHERE {
     		UNION
     		{?data a :PublicData }
     }}
-	GRAPH ?g {?action ?p ?v.}
+	GRAPH ?situation {?action ?p ?v.}
 }

@@ -1,2 +1,0 @@
-This folder contains the applicable aspect of the rules obtained from the studied regulations.
-The rules are expressed in SPARQL.

@@ -8,7 +8,6 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 INSERT {
 	:Investigation13_2b_explicit_compliant :isApplicable ?situation .
-	:Investigation13_2b_implicit_compliant :isApplicable ?situation . 
 }
 WHERE {
 	?situation :isAbout ?action .
