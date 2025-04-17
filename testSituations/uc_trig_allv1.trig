@@ -4,6 +4,10 @@
 
 {
 
+   :Situation01
+       a lrmlmm:FactualStatement ;
+       :isAbout :storage_change_01 .
+
    :storage_change_01
        a :DataStorageChange;
        :involvesData :dataset_01;
@@ -25,7 +29,9 @@
 
 
 
-
+   :Situation02
+       a lrmlmm:FactualStatement ;
+       :isAbout :storage_change_02 .
 
    :storage_change_02
        a :DataStorageChange;
@@ -54,6 +60,10 @@
 
 
 
+   :Situation02bis
+       a lrmlmm:FactualStatement ;
+       :isAbout :storage_change_02bis .
+
    :storage_change_02bis
        a :DataStorageChange;
        :involvesData :dataset_02bis;
@@ -76,6 +86,10 @@
 
 
 
+
+   :Situation02ter
+       a lrmlmm:FactualStatement ;
+       :isAbout :storage_change_02ter .
 
    :storage_change_02ter
        a :DataStorageChange;
@@ -102,6 +116,10 @@
 
 
 
+   :Situation03
+       a lrmlmm:FactualStatement ;
+       :isAbout :storage_change_03 .
+
    :storage_change_03
        a :DataStorageChange;
        :involvesData :dataset_02;
@@ -114,6 +132,11 @@
 
 
 
+
+   :Situation04
+       a lrmlmm:FactualStatement ;
+       :isAbout :storage_change_04 .
+
    :storage_change_04
        a :DataStorageChange;
        :involvesData :dataset_02;
@@ -124,6 +147,10 @@
 
 
 
+
+   :Situation05
+       a lrmlmm:FactualStatement ;
+       :isAbout :EIO_emission_01 .
 
    :EIO_emission_01
        a :ProcedureEmission;
@@ -148,6 +175,10 @@
 
 
 
+   :Situation06
+       a lrmlmm:FactualStatement ;
+       :isAbout :EIO_emission_02 .
+
    :EIO_emission_02
        a :ProcedureEmission;
        :involvesProcedure :EIO_02;
@@ -169,6 +200,11 @@
 
 
 
+
+   :Situation07
+       a lrmlmm:FactualStatement ;
+       :isAbout :EIO_emission_03 .
+
    :EIO_emission_03
        a :ProcedureEmission;
        :involvesProcedure :EIO_02;
@@ -180,6 +216,12 @@
 
 
 
+
+
+
+   :Situation08
+       a lrmlmm:FactualStatement ;
+       :isAbout :EIO_emission_04 .
 
    :EIO_emission_04
        a :ProcedureTransmission;
@@ -194,6 +236,12 @@
 
 
 
+
+
+   :Situation09
+       a lrmlmm:FactualStatement ;
+       :isAbout :EIO_emission_05 .
+
    :EIO_emission_05
        a :ProcedureTransmission;
        :involvesProcedure :EIO_02;
@@ -207,6 +255,11 @@
 
 
 
+
+
+   :Situation10
+       a lrmlmm:FactualStatement ;
+       :isAbout :action_suspension_01 .
 
    :action_suspension_01
        a :ActionSuspension;
@@ -231,6 +284,11 @@
 
 
 
+
+   :Situation11
+       a lrmlmm:FactualStatement ;
+       :isAbout :action_suspension_02 .
+
    :action_suspension_02
        a :ActionSuspension;
        :suspends :evidence_transmission_01;
@@ -241,6 +299,10 @@
 
 
 
+
+   :Situation12
+       a lrmlmm:FactualStatement ;
+       :isAbout :action_suspension_03 .
 
    :action_suspension_03
        a :ActionSuspension;
@@ -258,6 +320,9 @@
 
 
 
+   :Situation13
+       a lrmlmm:FactualStatement ;
+       :isAbout :action_suspension_05 .
 
    :action_suspension_05
        a :ActionSuspension;

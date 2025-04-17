@@ -164,7 +164,7 @@ rdfs:label "Applicability of Art 7.6 from LawEIO"@en .
 rdfs:label "Compliance to Art 7.6 from LawEIO"@en .
 
 
-Investigation13_2a_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+:Investigation13_2a_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
 rdfs:label "Applicability of Art 13.2-a from LawEIO"@en .
 
 :Investigation13_2a_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
@@ -184,7 +184,7 @@ rdfs:label "Applicability of Art 13.2-b from LawEIO"@en .
 rdfs:label "Compliance to Art 13.2-b from LawEIO"@en .
 
 
-Investigation32_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+:Investigation32_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
 rdfs:label "Applicability of Art 32 from LawEIO"@en .
 
 :Investigation32_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;

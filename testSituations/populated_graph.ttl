@@ -30,8 +30,7 @@
 @prefix math: <http://www.w3.org/2005/xpath-functions/math> .
 @prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
 
-<http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing> a owl:Ontology;
-  owl:versionIRI <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing/2.0> .
+<http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing> a owl:Ontology .
 
 <http://www.w3.org/2006/time#generalDay> a rdfs:Datatype .
 
@@ -41,13 +40,11 @@
 
 nrv:hasCompliance a owl:ObjectProperty;
   rdfs:domain :RegulativeStatement;
-  rdfs:range lrmlmm:FactualStatement;
-  owl:propertyDisjointWith nrv:hasViolation .
+  rdfs:range lrmlmm:FactualStatement .
 
 :RegulativeStatement a owl:Class;
   rdfs:subClassOf nrv:LogicalFormula;
-  owl:equivalentClass _:node69;
-  rdfs:label "Deontic Statement"@en .
+  owl:equivalentClass _:node25 .
 
 lrmlmm:FactualStatement a owl:Class;
   rdfs:subClassOf nrv:LogicalFormula .
@@ -64,11 +61,25 @@ nrv:ViolableRequirement a owl:Class;
   rdfs:range :InvestigationMeasure .
 
 :EIO a owl:Class;
-  rdfs:subClassOf :InvestigationProcess;
-  rdfs:label "Décision d'enquête européenne"@fr, "European Investigation Order"@en .
+  rdfs:subClassOf :InvestigationProcess .
 
 :InvestigationMeasure a owl:Class;
   rdfs:subClassOf :Action .
+
+:containsArticle a owl:ObjectProperty;
+  rdfs:domain :LawText;
+  rdfs:range :LawArticle;
+  owl:inverseOf :isArticleOf .
+
+:isArticleOf a owl:ObjectProperty;
+  rdfs:domain :LawArticle;
+  rdfs:range :LawText .
+
+:LawText a owl:Class;
+  rdfs:subClassOf :Document .
+
+:LawArticle a owl:Class;
+  rdfs:subClassOf :DocumentContent .
 
 :containsData a owl:ObjectProperty;
   rdfs:domain :DataSet;
@@ -92,8 +103,7 @@ nrv:DeonticModality a owl:Class;
 :Acquisition a owl:Class;
   rdfs:subClassOf :Processing .
 
-:Authority a owl:Class;
-  rdfs:label "Authority"@en .
+:Authority a owl:Class .
 
 :fromEmission a owl:ObjectProperty;
   rdfs:domain :Emission;
@@ -127,6 +137,10 @@ nrv:DeonticModality a owl:Class;
 :Address a owl:Class;
   rdfs:subClassOf :Location .
 
+:hasApplicability a owl:ObjectProperty;
+  rdfs:domain :RegulativeStatement;
+  rdfs:range lrmlmm:FactualStatement .
+
 :hasApplicableCode a owl:ObjectProperty;
   rdfs:domain :Offence;
   rdfs:range :LawText;
@@ -136,11 +150,7 @@ nrv:DeonticModality a owl:Class;
   rdfs:domain :LawText;
   rdfs:range :Offence .
 
-:Offence a owl:Class;
-  rdfs:label "Crime"@en, "Infraction"@fr .
-
-:LawText a owl:Class;
-  rdfs:subClassOf :Document .
+:Offence a owl:Class .
 
 :hasBirthPlace a owl:ObjectProperty;
   rdfs:domain :NaturalPerson;
@@ -174,8 +184,7 @@ nrv:DeonticModality a owl:Class;
   rdfs:domain :Evidence;
   rdfs:range :Authority .
 
-:Evidence a owl:Class;
-  rdfs:label "Evidence"@en, "Proof"@en .
+:Evidence a owl:Class .
 
 :hasExecutionAuthorityAction a owl:ObjectProperty;
   rdfs:domain :Action;
@@ -192,8 +201,7 @@ nrv:DeonticModality a owl:Class;
   rdfs:range :Country .
 
 :Country a owl:Class;
-  rdfs:subClassOf :Location;
-  rdfs:label "State" .
+  rdfs:subClassOf :Location .
 
 :hasGender a owl:ObjectProperty;
   rdfs:domain :Person;
@@ -240,9 +248,7 @@ nrv:DeonticModality a owl:Class;
   rdfs:domain :Action;
   rdfs:range :GroundOfJustification .
 
-:GroundOfJustification a owl:Class;
-  rdfs:comment "reasons for shortening a procedure or rejecting a procedure"@en;
-  rdfs:label "motif de justification"@fr .
+:GroundOfJustification a owl:Class .
 
 :hasJustificationMeasure a owl:ObjectProperty;
   rdfs:domain :InvestigationMeasure;
@@ -295,6 +301,12 @@ nrv:DeonticModality a owl:Class;
   rdfs:domain :EIO;
   rdfs:range :Authority .
 
+:hasRelatedRule a owl:ObjectProperty;
+  rdfs:domain :LawArticle;
+  rdfs:range nrv:LogicalFormula .
+
+nrv:LogicalFormula a owl:Class .
+
 :hasRepresentative a owl:ObjectProperty;
   rdfs:domain :LegalPerson;
   rdfs:range :NaturalPerson;
@@ -308,13 +320,11 @@ nrv:DeonticModality a owl:Class;
   rdfs:domain :Person;
   rdfs:range :Role .
 
-:Role a owl:Class;
-  rdfs:comment "role, function, grade, title" .
+:Role a owl:Class .
 
 :hasSource a owl:ObjectProperty;
   rdfs:domain lrmlmm:Sources;
-  rdfs:range :Document;
-  rdfs:comment "inspired by lrmlmm:hasLegalSource" .
+  rdfs:range :Document .
 
 lrmlmm:Sources a owl:Class .
 
@@ -330,19 +340,13 @@ lrmlmm:LegalRuleMLDocument a owl:Class;
 
 :hasStatement a owl:ObjectProperty;
   rdfs:domain :LogicalFormulas;
-  rdfs:range nrv:LogicalFormula;
-  rdfs:label "hasLogicalFormula" .
+  rdfs:range nrv:LogicalFormula .
 
-:LogicalFormulas a owl:Class;
-  rdfs:label "Statements"@en .
-
-nrv:LogicalFormula a owl:Class;
-  rdfs:label "Logical Formua"@en, "Statement"@en .
+:LogicalFormulas a owl:Class .
 
 :hasStatements a owl:ObjectProperty;
   rdfs:domain lrmlmm:LegalRuleMLDocument;
-  rdfs:range :LogicalFormulas;
-  rdfs:label "hasLogicalFormulas" .
+  rdfs:range :LogicalFormulas .
 
 :hasTarget a owl:ObjectProperty;
   rdfs:domain :InvestigationMeasure;
@@ -391,14 +395,17 @@ nrv:LogicalFormula a owl:Class;
 
 :Procedure a owl:Class .
 
+:isAbout a owl:ObjectProperty;
+  rdfs:domain lrmlmm:FactualStatement;
+  rdfs:range :Action .
+
 :isAddressedToState a owl:ObjectProperty;
   rdfs:domain :EIO;
   rdfs:range :Country .
 
 :isApplicable a owl:ObjectProperty;
   rdfs:domain :RegulativeStatement;
-  rdfs:range lrmlmm:FactualStatement;
-  rdfs:comment "indicates if a Rule is applicable to a specific situation" .
+  rdfs:range lrmlmm:FactualStatement .
 
 :isInSituation a owl:ObjectProperty;
   rdfs:domain :Action;
@@ -474,8 +481,11 @@ nrv:LogicalFormula a owl:Class;
 
 :conditionsIdem a owl:DatatypeProperty;
   rdfs:domain :InvestigationMeasure;
-  rdfs:range xsd:boolean;
-  rdfs:comment "investigation measures could have been ordered under the same conditions in a similar domestic case" .
+  rdfs:range xsd:boolean .
+
+:content a owl:DatatypeProperty;
+  rdfs:domain :LawArticle;
+  rdfs:range xsd:string .
 
 :hasBirthDate a owl:DatatypeProperty;
   rdfs:domain :Person;
@@ -483,8 +493,7 @@ nrv:LogicalFormula a owl:Class;
 
 :hasCriminalRecord a owl:DatatypeProperty;
   rdfs:domain :Person;
-  rdfs:range xsd:boolean;
-  rdfs:comment "!!! Pour l'instant une propriété booléenne mais devrait être plus détaillée (pouvoir renseigner le contenu éventuel d'un casier judiciaire) !!!" .
+  rdfs:range xsd:boolean .
 
 :hasDurationMeasure a owl:DatatypeProperty;
   rdfs:domain :InvestigationMeasure;
@@ -528,8 +537,7 @@ nrv:LogicalFormula a owl:Class;
 
 :isAuthorizedLaw a owl:DatatypeProperty;
   rdfs:domain :Action;
-  rdfs:range xsd:boolean;
-  rdfs:comment "indicates the fact that an action is authorized by Union or Member State law" .
+  rdfs:range xsd:boolean .
 
 :isNecessary a owl:DatatypeProperty;
   rdfs:domain :Action;
@@ -557,8 +565,7 @@ nrv:LogicalFormula a owl:Class;
 
 :protectsVitalInterests a owl:DatatypeProperty;
   rdfs:domain :Action;
-  rdfs:range xsd:boolean;
-  rdfs:comment "!! Il existe actuellement aussi une Object Properties pour les interets vitaux" .
+  rdfs:range xsd:boolean .
 
 :requestedDecoding a owl:DatatypeProperty;
   rdfs:domain :InvestigationMeasure;
@@ -574,27 +581,34 @@ nrv:LogicalFormula a owl:Class;
 
 :writtenTraces a owl:DatatypeProperty;
   rdfs:domain :Action;
-  rdfs:range xsd:boolean;
-  rdfs:comment "the means of executing the action should produce a written record" .
+  rdfs:range xsd:boolean .
 
 nrv:Compliance a owl:Class;
   rdfs:subClassOf lrmlmm:FactualStatement .
 
 nrv:CompliantRequirement a owl:Class;
   rdfs:subClassOf nrv:ViolableRequirement;
-  owl:equivalentClass _:node49 .
+  owl:equivalentClass _:node1 .
+
+_:node1 a owl:Class .
+
+_:node3 a owl:Restriction .
 
 nrv:Violation a owl:Class;
   rdfs:subClassOf lrmlmm:FactualStatement .
 
 nrv:ViolatedRequirement a owl:Class;
   rdfs:subClassOf nrv:ViolableRequirement;
-  owl:equivalentClass _:node53 .
+  owl:equivalentClass _:node5 .
 
 nrv:Modality a owl:Class .
 
 nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :RegulativeStatement .
+
+_:node5 a owl:Class .
+
+_:node7 a owl:Restriction .
 
 :AccessData a owl:Class;
   rdfs:subClassOf :Data .
@@ -607,6 +621,12 @@ nrv:NonViolableRequirement a owl:Class;
 
 :SubscriberData a owl:Class;
   rdfs:subClassOf :Data .
+
+:Applicability a owl:Class;
+  rdfs:subClassOf lrmlmm:FactualStatement .
+
+:ApplicabilityStatement a owl:Class;
+  rdfs:subClassOf :RegulativeStatement .
 
 :BankAccountInfoObtaining a owl:Class;
   rdfs:subClassOf :CommonMeasure .
@@ -648,17 +668,18 @@ nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :TelephonyData .
 
 :CommunicationInterceptionNotification a owl:Class;
-  rdfs:subClassOf :InvestigationProcess;
-  rdfs:label "Communication interception notification"@en, "Notification d'interception de communications"@fr .
+  rdfs:subClassOf :InvestigationProcess .
 
 :InvestigationProcess a owl:Class;
   rdfs:subClassOf :Procedure .
 
 :CommunicationMean a owl:Class .
 
+:ComplianceStatement a owl:Class;
+  rdfs:subClassOf :RegulativeStatement .
+
 :ConstitutiveStatement a owl:Class;
-  rdfs:subClassOf nrv:LogicalFormula;
-  rdfs:comment "Definition of concepts and ideas in a regulation" .
+  rdfs:subClassOf nrv:LogicalFormula .
 
 :ContactData a owl:Class;
   rdfs:subClassOf :SubscriberData .
@@ -702,26 +723,38 @@ nrv:NonViolableRequirement a owl:Class;
 :DeviceBackupsData a owl:Class;
   rdfs:subClassOf :ContentData .
 
-:Drugs a owl:Class;
-  rdfs:comment "narcotic, psychotropic"@en, "stupéfiant, psychotrope"@fr .
+:DocumentContent a owl:Class .
+
+:Drugs a owl:Class .
 
 :EIOReceiptConfirmation a owl:Class;
-  rdfs:subClassOf :InvestigationProcess;
-  rdfs:label "Confirmation de réception de la décision d'enquête"@fr, "European Investigation Order Receipt Confirmation"@en .
+  rdfs:subClassOf :InvestigationProcess .
 
 :EPOC a owl:Class;
-  rdfs:subClassOf :Procedure;
-  rdfs:label "Evidence Production"@en, "Production de preuves"@fr .
+  rdfs:subClassOf :Procedure .
 
 :EPOC-PR a owl:Class;
-  rdfs:subClassOf :Procedure;
-  rdfs:label "Conservation de preuves"@fr, "Evidence Conservation"@en .
+  rdfs:subClassOf :Procedure .
 
 :EmergencySituation a owl:Class;
   rdfs:subClassOf :Situation .
 
 :EthnicOriginData a owl:Class;
   rdfs:subClassOf :SensitivePersonalData .
+
+:ExceptionStatement a owl:Class;
+  rdfs:subClassOf nrv:LogicalFormula .
+
+:FacultativeModality a owl:Class;
+  rdfs:subClassOf nrv:DeonticModality .
+
+:FacultativeStatement a owl:Class;
+  rdfs:subClassOf nrv:NonViolableRequirement;
+  owl:equivalentClass _:node9 .
+
+_:node9 a owl:Class .
+
+_:node11 a owl:Restriction .
 
 :Form a owl:Class;
   rdfs:subClassOf :Document .
@@ -742,16 +775,14 @@ nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :TransactionData .
 
 :IMEIData a owl:Class;
-  rdfs:subClassOf <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData>;
-  rdfs:label "International Mobile Equipment Identity" .
+  rdfs:subClassOf <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData> .
 
 <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData>
   a owl:Class;
   rdfs:subClassOf :TelephonyData .
 
 :IMSIData a owl:Class;
-  rdfs:subClassOf <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData>;
-  rdfs:label "International Mobile Subscriber Identity" .
+  rdfs:subClassOf <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Outgoing&IncomingIdentifiersData> .
 
 :IPConnectionLogsData a owl:Class;
   rdfs:subClassOf :AccessData .
@@ -766,27 +797,22 @@ nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :SubscriberData .
 
 :InabilityRequestExecution a owl:Class;
-  rdfs:subClassOf :Procedure;
-  rdfs:label "Impossibilité d'exécuter une requête"@fr, "Inability to execute request"@en .
+  rdfs:subClassOf :Procedure .
 
 :InfoExecutorObtaining a owl:Class;
-  rdfs:subClassOf :CommonMeasure;
-  rdfs:comment "obtaining info in possession of the executor" .
+  rdfs:subClassOf :CommonMeasure .
 
 :InfoPoliceDatabaseObtaining a owl:Class;
-  rdfs:subClassOf :CommonMeasure;
-  rdfs:comment "Obtaining info in a police database" .
+  rdfs:subClassOf :CommonMeasure .
 
 :IssuesData a owl:Class;
   rdfs:subClassOf :HostingData .
 
 :Judge a owl:Class;
-  rdfs:subClassOf :JudicialAuthority;
-  rdfs:label "Judge, court or investigating judge"@en .
+  rdfs:subClassOf :JudicialAuthority .
 
 :JudicialAuthority a owl:Class;
-  rdfs:subClassOf :Authority;
-  rdfs:label "Judicial Authority"@en, "Legal Authority"@en .
+  rdfs:subClassOf :Authority .
 
 :LegalCode a owl:Class;
   rdfs:subClassOf :LawText .
@@ -827,8 +853,7 @@ nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :Situation .
 
 :NonReal-timeEvidence a owl:Class;
-  rdfs:subClassOf :Evidence;
-  rdfs:label "Non Real-time Evidence"@en, "Non Real-time Proof"@en .
+  rdfs:subClassOf :Evidence .
 
 :NonSensitivePersonalData a owl:Class;
   rdfs:subClassOf :PersonalData .
@@ -843,7 +868,11 @@ nrv:NonViolableRequirement a owl:Class;
 
 :ObligationStatement a owl:Class;
   rdfs:subClassOf :RegulativeStatement, nrv:ViolableRequirement;
-  owl:equivalentClass _:node57 .
+  owl:equivalentClass _:node13 .
+
+_:node13 a owl:Class .
+
+_:node15 a owl:Restriction .
 
 :OnlinePageData a owl:Class;
   rdfs:subClassOf :ContentData .
@@ -874,7 +903,11 @@ nrv:NonViolableRequirement a owl:Class;
 
 :PermissionStatement a owl:Class;
   rdfs:subClassOf :RegulativeStatement, nrv:NonViolableRequirement;
-  owl:equivalentClass _:node61 .
+  owl:equivalentClass _:node17 .
+
+_:node17 a owl:Class .
+
+_:node19 a owl:Restriction .
 
 :PhilosophicalBeliefData a owl:Class;
   rdfs:subClassOf :SensitivePersonalData .
@@ -895,8 +928,7 @@ nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :TransactionData .
 
 :PrivateData a owl:Class;
-  rdfs:subClassOf :Data;
-  rdfs:comment "Data that are not public" .
+  rdfs:subClassOf :Data .
 
 :ProcedureEmission a owl:Class;
   rdfs:subClassOf :Emission, :ProcedureRelatedAction .
@@ -915,15 +947,17 @@ nrv:NonViolableRequirement a owl:Class;
 
 :ProhibitionStatement a owl:Class;
   rdfs:subClassOf :RegulativeStatement, nrv:ViolableRequirement;
-  owl:equivalentClass _:node65 .
+  owl:equivalentClass _:node21 .
+
+_:node21 a owl:Class .
+
+_:node23 a owl:Restriction .
 
 :ProsecutorSubscribersAccess a owl:Class;
-  rdfs:subClassOf :JudicialAuthority;
-  rdfs:label "Prosecutor (subscribers and access)"@en .
+  rdfs:subClassOf :JudicialAuthority .
 
 :ProsecutorTransactionContent a owl:Class;
-  rdfs:subClassOf :JudicialAuthority;
-  rdfs:label "Prosecutor (transactions and content)"@en .
+  rdfs:subClassOf :JudicialAuthority .
 
 :PurchaseHistoryData a owl:Class;
   rdfs:subClassOf :TransactionData .
@@ -932,11 +966,14 @@ nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :SensitivePersonalData .
 
 :Real-timeEvidence a owl:Class;
-  rdfs:subClassOf :Evidence;
-  rdfs:label "Real-time Evidence"@en, "Real-time Proof"@en .
+  rdfs:subClassOf :Evidence .
 
 :RealTimeEvidenceGathering a owl:Class;
   rdfs:subClassOf :CommonMeasure .
+
+_:node25 a owl:Class .
+
+_:node27 a owl:Restriction .
 
 :ReligiousBeliefData a owl:Class;
   rdfs:subClassOf :SensitivePersonalData .
@@ -978,61 +1015,36 @@ nrv:NonViolableRequirement a owl:Class;
   rdfs:subClassOf :ContentData .
 
 :Weaponry a owl:Class;
-  rdfs:subClassOf :PurchaseHistoryData;
-  rdfs:comment "arme, munition, explosif"@fr, "weapon, ammunition, explosive"@en .
+  rdfs:subClassOf :PurchaseHistoryData .
 
 <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#Credit&DebitCardData>
   a owl:Class;
   rdfs:subClassOf :SubscriberData .
 
-adr:AddressComponent a owl:Class;
-  rdfs:label "address component";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+adr:AddressComponent a owl:Class .
 
 adr:PrimaryAddressNumber a owl:Class;
-  rdfs:subClassOf adr:AddressComponent;
-  rdfs:comment "address component that identifies a location with respect to a given street";
-  rdfs:label "primary address number";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+  rdfs:subClassOf adr:AddressComponent .
 
 adr:SecondaryUnit a owl:Class;
-  rdfs:subClassOf adr:AddressComponent;
-  rdfs:comment "address component that identifies an individual unit within a larger structure, such as an apartment, office, hangar, slip, mailbox, and so forth, at a given address";
-  rdfs:label "secondary unit";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+  rdfs:subClassOf adr:AddressComponent .
 
 adr:SecondaryUnitIndicator a owl:Class;
-  rdfs:subClassOf adr:AddressComponent;
-  rdfs:comment "index to the specific unit within a secondary unit, such as a building or apartment, at a particular street address";
-  rdfs:label "secondary unit indicator";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+  rdfs:subClassOf adr:AddressComponent .
 
 adr:StreetAddress a owl:Class;
-  rdfs:subClassOf adr:AddressComponent;
-  rdfs:comment "index to a location that consists of a primary address number, predirectional, street name, suffix, postdirectional, and an optional secondary unit";
-  rdfs:label "street address";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+  rdfs:subClassOf adr:AddressComponent .
 
 adr:StreetName a owl:Class;
-  rdfs:subClassOf adr:AddressComponent;
-  rdfs:comment "identifier for a street in some context (city, municipality, geographic region)";
-  rdfs:label "street name";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+  rdfs:subClassOf adr:AddressComponent .
 
 adr:StreetSuffix a owl:Class;
-  rdfs:subClassOf adr:AddressComponent;
-  rdfs:comment "suffix that classifies road types (street, avenue, road,...)";
-  rdfs:label "street suffix";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+  rdfs:subClassOf adr:AddressComponent .
 
 adr:StructureName a owl:Class;
-  rdfs:subClassOf adr:AddressComponent;
-  rdfs:comment "name for a building, house, complex, shopping center,...";
-  rdfs:label "structure name";
-  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+  rdfs:subClassOf adr:AddressComponent .
 
-:EJN a :CommunicationMean, owl:NamedIndividual;
-  rdfs:label "European Judicial Network" .
+:EJN a :CommunicationMean, owl:NamedIndividual .
 
 :Forgery_of_administrative_documents a :Offence, owl:NamedIndividual .
 
@@ -1186,11 +1198,95 @@ adr:StructureName a owl:Class;
 
 :woman a :Gender, owl:NamedIndividual .
 
+:LED a :LawText .
+
+:LED_10 a :LawArticle .
+
+:LED10_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:LED10_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement .
+
+:LED10_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement .
+
+:LED10_exception a nrv:LogicalFormula, :ExceptionStatement .
+
+:LSS1 a lrmlmm:Sources .
+
+:LRD1 a lrmlmm:LegalRuleMLDocument .
+
+:SS1 a :LogicalFormulas .
+
+:LawEIO a :LawText .
+
+:Investigation6_1 a :LawArticle .
+
+:Investigation7_1 a :LawArticle .
+
+:Investigation7_4 a :LawArticle .
+
+:Investigation7_6 a :LawArticle .
+
+:Investigation13_2a a :LawArticle .
+
+:Investigation13_2b a :LawArticle .
+
+:Investigation32_1 a :LawArticle .
+
+:Investigation6_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:Investigation6_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement .
+
+:Investigation6_1_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement .
+
+:Investigation6_1_exception a nrv:LogicalFormula, :ExceptionStatement .
+
+:Investigation7_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:Investigation7_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ObligationStatement .
+
+:Investigation7_4_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:Investigation7_4_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement .
+
+:Investigation7_6_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:Investigation7_6_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ObligationStatement .
+
+:Investigation13_2a_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:Investigation13_2a_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement,
+    :PermissionStatement .
+
+:Investigation13_2a_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement,
+    :ProhibitionStatement .
+
+:Investigation13_2a_exception a nrv:LogicalFormula, :ExceptionStatement .
+
+:Investigation13_2b_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:Investigation13_2b_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement,
+    :ObligationStatement .
+
+:Investigation32_1_applicable a nrv:LogicalFormula, :ApplicabilityStatement .
+
+:Investigation32_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement,
+    :PermissionStatement .
+
+:LSS2 a lrmlmm:Sources .
+
+:LRD2 a lrmlmm:LegalRuleMLDocument .
+
+:SS2 a :LogicalFormulas .
+
+:Situation01 a lrmlmm:FactualStatement .
+
 :storage_change_01 a :DataStorageChange .
 
 :dataset_01 a :DataSet .
 
 :data_01 a :NonSensitivePersonalData, :PrivateData .
+
+:Situation02 a lrmlmm:FactualStatement .
 
 :storage_change_02 a :DataStorageChange .
 
@@ -1200,11 +1296,15 @@ adr:StructureName a owl:Class;
 
 :data_03 a :SensitivePersonalData, :PrivateData .
 
+:Situation02bis a lrmlmm:FactualStatement .
+
 :storage_change_02bis a :DataStorageChange .
 
 :dataset_02bis a :DataSet .
 
 :data_02bis a :SensitivePersonalData, :PublicData .
+
+:Situation02ter a lrmlmm:FactualStatement .
 
 :storage_change_02ter a :DataStorageChange .
 
@@ -1212,33 +1312,15 @@ adr:StructureName a owl:Class;
 
 :data_03bis a :SensitivePersonalData, :PublicData .
 
+:Situation03 a lrmlmm:FactualStatement .
+
 :storage_change_03 a :DataStorageChange .
+
+:Situation04 a lrmlmm:FactualStatement .
 
 :storage_change_04 a :DataStorageChange .
 
-_:node49 a owl:Class .
-
-_:node51 a owl:Restriction .
-
-_:node53 a owl:Class .
-
-_:node55 a owl:Restriction .
-
-_:node57 a owl:Class .
-
-_:node59 a owl:Restriction .
-
-_:node61 a owl:Class .
-
-_:node63 a owl:Restriction .
-
-_:node65 a owl:Class .
-
-_:node67 a owl:Restriction .
-
-_:node69 a owl:Class .
-
-_:node71 a owl:Restriction .
+:Situation05 a lrmlmm:FactualStatement .
 
 :EIO_emission_01 a :ProcedureEmission .
 
@@ -1246,17 +1328,27 @@ _:node71 a owl:Restriction .
 
 :measure_01 a :InvestigationMeasure, :MaterialSeizure .
 
+:Situation06 a lrmlmm:FactualStatement .
+
 :EIO_emission_02 a :ProcedureEmission .
 
 :EIO_02 a :EIO .
 
 :measure_02 a :InvestigationMeasure, :TelecomInterception .
 
+:Situation07 a lrmlmm:FactualStatement .
+
 :EIO_emission_03 a :ProcedureEmission .
+
+:Situation08 a lrmlmm:FactualStatement .
 
 :EIO_emission_04 a :ProcedureTransmission .
 
+:Situation09 a lrmlmm:FactualStatement .
+
 :EIO_emission_05 a :ProcedureTransmission .
+
+:Situation10 a lrmlmm:FactualStatement .
 
 :action_suspension_01 a :ActionSuspension .
 
@@ -1266,52 +1358,134 @@ _:node71 a owl:Restriction .
 
 :suspect04 a :Person .
 
+:Situation11 a lrmlmm:FactualStatement .
+
 :action_suspension_02 a :ActionSuspension .
+
+:Situation12 a lrmlmm:FactualStatement .
 
 :action_suspension_03 a :ActionSuspension .
 
 :urgent_situation01 a :EmergencySituation .
+
+:Situation13 a lrmlmm:FactualStatement .
 
 :action_suspension_05 a :ActionSuspension .
 
 owl:topObjectProperty rdfs:domain lrmlmm:LegalRuleMLDocument;
   rdfs:range lrmlmm:Sources .
 
-_:node50 rdf:first nrv:ViolableRequirement;
-  rdf:rest _:node52 .
+_:node2 rdf:first nrv:ViolableRequirement .
 
-_:node52 rdf:first _:node51;
+_:node4 rdf:first _:node3 .
+
+_:node6 rdf:first nrv:ViolableRequirement .
+
+_:node8 rdf:first _:node7 .
+
+_:node10 rdf:first :RegulativeStatement .
+
+_:node12 rdf:first _:node11 .
+
+_:node14 rdf:first :RegulativeStatement .
+
+_:node16 rdf:first _:node15 .
+
+_:node18 rdf:first :RegulativeStatement;
+  rdf:rest _:node20 .
+
+_:node20 rdf:first _:node19;
   rdf:rest rdf:nil .
 
-_:node54 rdf:first nrv:ViolableRequirement;
-  rdf:rest _:node56 .
+_:node22 rdf:first :RegulativeStatement;
+  rdf:rest _:node24 .
 
-_:node56 rdf:first _:node55;
+_:node24 rdf:first _:node23;
   rdf:rest rdf:nil .
 
-_:node58 rdf:first :RegulativeStatement;
-  rdf:rest _:node60 .
+_:node26 rdf:first nrv:LogicalFormula;
+  rdf:rest _:node28 .
 
-_:node60 rdf:first _:node59;
+_:node28 rdf:first _:node27;
   rdf:rest rdf:nil .
 
-_:node62 rdf:first :RegulativeStatement;
-  rdf:rest _:node64 .
+_:node2 rdf:rest _:node4 .
 
-_:node64 rdf:first _:node63;
-  rdf:rest rdf:nil .
+_:node4 rdf:rest rdf:nil .
 
-_:node66 rdf:first :RegulativeStatement;
-  rdf:rest _:node68 .
+_:node6 rdf:rest _:node8 .
 
-_:node68 rdf:first _:node67;
-  rdf:rest rdf:nil .
+_:node8 rdf:rest rdf:nil .
 
-_:node70 rdf:first nrv:LogicalFormula;
-  rdf:rest _:node72 .
+_:node10 rdf:rest _:node12 .
 
-_:node72 rdf:first _:node71;
-  rdf:rest rdf:nil .
+_:node12 rdf:rest rdf:nil .
+
+_:node14 rdf:rest _:node16 .
+
+_:node16 rdf:rest rdf:nil .
+
+:GroundOfJustification rdfs:comment "reasons for shortening a procedure or rejecting a procedure"@en;
+  rdfs:label "motif de justification"@fr .
+
+:Role rdfs:comment "role, function, grade, title" .
+
+:hasSource rdfs:comment "inspired by lrmlmm:hasLegalSource" .
+
+:isApplicable rdfs:comment "indicates if a Rule is applicable to a specific situation" .
+
+:conditionsIdem rdfs:comment "investigation measures could have been ordered under the same conditions in a similar domestic case" .
+
+:hasCriminalRecord rdfs:comment "!!! Pour l'instant une propriété booléenne mais devrait être plus détaillée (pouvoir renseigner le contenu éventuel d'un casier judiciaire) !!!" .
+
+:isAuthorizedLaw rdfs:comment "indicates the fact that an action is authorized by Union or Member State law" .
+
+:protectsVitalInterests rdfs:comment "!! Il existe actuellement aussi une Object Properties pour les interets vitaux" .
+
+:writtenTraces rdfs:comment "the means of executing the action should produce a written record" .
+
+:ConstitutiveStatement rdfs:comment "Definition of concepts and ideas in a regulation" .
+
+:Drugs rdfs:comment "narcotic, psychotropic"@en, "stupéfiant, psychotrope"@fr .
+
+:FacultativeModality rdfs:comment "Negation of an Obligation Modality" .
+
+:InfoExecutorObtaining rdfs:comment "obtaining info in possession of the executor" .
+
+:InfoPoliceDatabaseObtaining rdfs:comment "Obtaining info in a police database" .
+
+:PrivateData rdfs:comment "Data that are not public";
+  owl:disjointWith :PublicData .
+
+:Weaponry rdfs:comment "arme, munition, explosif"@fr, "weapon, ammunition, explosive"@en .
+
+adr:PrimaryAddressNumber rdfs:comment "address component that identifies a location with respect to a given street";
+  rdfs:label "primary address number";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:SecondaryUnit rdfs:comment "address component that identifies an individual unit within a larger structure, such as an apartment, office, hangar, slip, mailbox, and so forth, at a given address";
+  rdfs:label "secondary unit";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:SecondaryUnitIndicator rdfs:comment "index to the specific unit within a secondary unit, such as a building or apartment, at a particular street address";
+  rdfs:label "secondary unit indicator";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StreetAddress rdfs:comment "index to a location that consists of a primary address number, predirectional, street name, suffix, postdirectional, and an optional secondary unit";
+  rdfs:label "street address";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StreetName rdfs:comment "identifier for a street in some context (city, municipality, geographic region)";
+  rdfs:label "street name";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StreetSuffix rdfs:comment "suffix that classifies road types (street, avenue, road,...)";
+  rdfs:label "street suffix";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+adr:StructureName rdfs:comment "name for a building, house, complex, shopping center,...";
+  rdfs:label "structure name";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
 
 sparql-service-description:BasicFederatedQuery rdfs:comment "sd:BasicFederatedQuery, when used as the object of the sd:feature property, indicates that the SPARQL service supports basic federated query using the SERVICE keyword as defined by SPARQL 1.1 Federation Extensions.";
   rdfs:label "Basic Federated Query" .
@@ -1354,6 +1528,150 @@ sparql-service-description:namedGraph rdfs:comment "Relates an instance of sd:Gr
 
 sparql-service-description:supportedEntailmentProfile rdfs:comment "Relates a named graph description with a resource representing a supported profile of the entailment regime (as declared by sd:entailmentRegime) used for basic graph pattern matching over that graph.";
   rdfs:label "supported entailment profile" .
+
+:RegulativeStatement rdfs:label "Deontic Statement"@en .
+
+:EIO rdfs:label "Décision d'enquête européenne"@fr, "European Investigation Order"@en .
+
+:Authority rdfs:label "Authority"@en .
+
+:hasApplicability rdfs:label "hasApplicability", "isApplicableTo" .
+
+:Offence rdfs:label "Crime"@en, "Infraction"@fr .
+
+:Evidence rdfs:label "Evidence"@en, "Proof"@en .
+
+:Country rdfs:label "State" .
+
+nrv:LogicalFormula rdfs:label "Logical Formua"@en, "Statement"@en .
+
+:hasStatement rdfs:label "hasLogicalFormula" .
+
+:LogicalFormulas rdfs:label "Statements"@en .
+
+:hasStatements rdfs:label "hasLogicalFormulas" .
+
+nrv:Compliance rdfs:label "ComplianceStatement" .
+
+nrv:Violation rdfs:label "ViolationStatement" .
+
+:Applicability rdfs:label "ApplicabilityStatement" .
+
+:CommunicationInterceptionNotification rdfs:label "Communication interception notification"@en,
+    "Notification d'interception de communications"@fr .
+
+:EIOReceiptConfirmation rdfs:label "Confirmation de réception de la décision d'enquête"@fr,
+    "European Investigation Order Receipt Confirmation"@en .
+
+:EPOC rdfs:label "Evidence Production"@en, "Production de preuves"@fr .
+
+:EPOC-PR rdfs:label "Conservation de preuves"@fr, "Evidence Conservation"@en .
+
+:IMEIData rdfs:label "International Mobile Equipment Identity" .
+
+:IMSIData rdfs:label "International Mobile Subscriber Identity" .
+
+:InabilityRequestExecution rdfs:label "Impossibilité d'exécuter une requête"@fr, "Inability to execute request"@en .
+
+:Judge rdfs:label "Judge, court or investigating judge"@en .
+
+:JudicialAuthority rdfs:label "Judicial Authority"@en, "Legal Authority"@en .
+
+:NonReal-timeEvidence rdfs:label "Non Real-time Evidence"@en, "Non Real-time Proof"@en .
+
+:ProsecutorSubscribersAccess rdfs:label "Prosecutor (subscribers and access)"@en .
+
+:ProsecutorTransactionContent rdfs:label "Prosecutor (transactions and content)"@en .
+
+:Real-timeEvidence rdfs:label "Real-time Evidence"@en, "Real-time Proof"@en .
+
+adr:AddressComponent rdfs:label "address component";
+  rdfs:isDefinedBy "https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/" .
+
+:EJN rdfs:label "European Judicial Network" .
+
+:LED rdfs:label "Law Enforcement Directive"@en;
+  :containsArticle :LED_10 .
+
+:LED_10 rdfs:label "LED Art 10 : Special Data Processing"@en;
+  :hasRelatedRule :LED10_applicable, :LED10_explicit_compliant, :LED10_implicit_compliant,
+    :LED10_exception .
+
+:LED10_applicable rdfs:label "Applicability of Art 10 from the LED"@en .
+
+:LED10_explicit_compliant rdfs:label "Compliance to Art 10 from the LED"@en .
+
+:LED10_implicit_compliant rdfs:label "Negation of Compliance to Art 10 from the LED"@en .
+
+:LED10_exception rdfs:label "Exception for Art 10 from the LED"@en .
+
+:LawEIO rdfs:label "Legal rules for European Investigation Order"@en;
+  :containsArticle :Investigation6_1, :Investigation7_1, :Investigation7_4, :Investigation7_6,
+    :Investigation13_2a, :Investigation13_2b, :Investigation32_1 .
+
+:Investigation6_1 rdfs:label "LawEIO Art 6.1 : Conditions of Emission and Transmission of an EIO"@en;
+  :hasRelatedRule :Investigation6_1_applicable, :Investigation6_1_explicit_compliant,
+    :Investigation6_1_implicit_compliant, :Investigation6_1_exception .
+
+:Investigation7_1 rdfs:label "LawEIO Art 7.1 : Transmission of an EIO"@en;
+  :hasRelatedRule :Investigation7_1_applicable, :Investigation7_1_explicit_compliant .
+
+:Investigation7_4 rdfs:label "LawEIO Art 7.4 : Transmission of an EIO"@en;
+  :hasRelatedRule :Investigation7_4_applicable, :Investigation7_4_explicit_compliant .
+
+:Investigation7_6 rdfs:label "LawEIO Art 7.6 : Transmission of an EIO"@en;
+  :hasRelatedRule :Investigation7_6_applicable, :Investigation7_6_explicit_compliant .
+
+:Investigation13_2a rdfs:label "LawEIO Art 13.2-a : Transmission of proof elements"@en;
+  :hasRelatedRule :Investigation13_2a_applicable, :Investigation13_2a_explicit_compliant,
+    :Investigation13_2a_implicit_compliant, :Investigation13_2a_exception .
+
+:Investigation13_2b rdfs:label "LawEIO Art 13.2-b : Transmission of proof elements"@en;
+  :hasRelatedRule :Investigation13_2b_applicable, :Investigation13_2b_explicit_compliant .
+
+:Investigation32_1 rdfs:label "LawEIO Art 32 : Provisory measures"@en;
+  :hasRelatedRule :Investigation32_1_applicable, :Investigation32_1_explicit_compliant .
+
+:Investigation6_1_applicable rdfs:label "Applicability of Art 6.1 from LawEIO"@en .
+
+:Investigation6_1_explicit_compliant rdfs:label "Compliance to Art 6.1 from LawEIO"@en .
+
+:Investigation6_1_implicit_compliant rdfs:label "Negation of Compliance to Art 6.1 from LawEIO"@en .
+
+:Investigation6_1_exception rdfs:label "Exception for Art 6.1 from LawEIO"@en .
+
+:Investigation7_1_applicable rdfs:label "Applicability of Art 7.1 from LawEIO"@en .
+
+:Investigation7_1_explicit_compliant rdfs:label "Compliance to Art 7.1 from LawEIO"@en .
+
+:Investigation7_4_applicable rdfs:label "Applicability of Art 7.4 from LawEIO"@en .
+
+:Investigation7_4_explicit_compliant rdfs:label "Compliance to Art 7.4 from LawEIO"@en .
+
+:Investigation7_6_applicable rdfs:label "Applicability of Art 7.6 from LawEIO"@en .
+
+:Investigation7_6_explicit_compliant rdfs:label "Compliance to Art 7.6 from LawEIO"@en .
+
+:Investigation13_2a_applicable rdfs:label "Applicability of Art 13.2-a from LawEIO"@en .
+
+:Investigation13_2a_explicit_compliant rdfs:label "Compliance to Art 13.2-a from LawEIO"@en .
+
+:Investigation13_2a_implicit_compliant rdfs:label "Negation of Compliance to Art 13.2-a from LawEIO"@en .
+
+:Investigation13_2a_exception rdfs:label "Exception for Art 13.2-a from LawEIO"@en .
+
+:Investigation13_2b_applicable rdfs:label "Applicability of Art 13.2-b from LawEIO"@en .
+
+:Investigation13_2b_explicit_compliant rdfs:label "Compliance to Art 13.2-b from LawEIO"@en .
+
+:Investigation32_1_applicable rdfs:label "Applicability of Art 32 from LawEIO"@en .
+
+:Investigation32_1_explicit_compliant rdfs:label "Compliance to Art 32 from LawEIO"@en .
+
+<http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing> owl:versionIRI
+    <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing/2.0> .
+
+nrv:hasCompliance owl:propertyDisjointWith nrv:hasViolation .
 
 :EIO_01 :asksMeasureEIO :measure_01 .
 
@@ -1481,45 +1799,99 @@ sparql-service-description:supportedEntailmentProfile rdfs:comment "Relates a na
 :measure_02 :hasJustificationMeasure :participation_in_criminal_organization;
   :involvesPersonMeasure :Arthur_Watts .
 
+:LSS1 :hasSource :LED .
+
+:LSS2 :hasSource :LawEIO .
+
+:LRD1 :hasSources :LSS1;
+  :hasStatements :SS1 .
+
+:LRD2 :hasSources :LSS2;
+  :hasStatements :SS2 .
+
+:SS1 :hasStatement :LED10_applicable, :LED10_explicit_compliant, :LED10_implicit_compliant,
+    :LED10_exception .
+
+:SS2 :hasStatement :Investigation6_1_applicable, :Investigation6_1_explicit_compliant,
+    :Investigation6_1_implicit_compliant, :Investigation6_1_exception, :Investigation7_1_applicable,
+    :Investigation7_1_explicit_compliant, :Investigation7_4_applicable, :Investigation7_4_explicit_compliant,
+    :Investigation7_6_applicable, :Investigation7_6_explicit_compliant, :Investigation13_2a_applicable,
+    :Investigation13_2a_explicit_compliant, :Investigation13_2a_implicit_compliant, :Investigation13_2a_exception,
+    :Investigation13_2b_applicable, :Investigation13_2b_explicit_compliant, :Investigation32_1_applicable,
+    :Investigation32_1_explicit_compliant .
+
 :evidence_transmission_01 :involvesEvidence :evidence_set_01;
   :involvesProcedure :EIO_ref_01 .
 
+:Situation01 :isAbout :storage_change_01 .
+
+:Situation02 :isAbout :storage_change_02 .
+
+:Situation02bis :isAbout :storage_change_02bis .
+
+:Situation02ter :isAbout :storage_change_02ter .
+
+:Situation03 :isAbout :storage_change_03 .
+
+:Situation04 :isAbout :storage_change_04 .
+
+:Situation05 :isAbout :EIO_emission_01 .
+
+:Situation06 :isAbout :EIO_emission_02 .
+
+:Situation07 :isAbout :EIO_emission_03 .
+
+:Situation08 :isAbout :EIO_emission_04 .
+
+:Situation09 :isAbout :EIO_emission_05 .
+
+:Situation10 :isAbout :action_suspension_01 .
+
+:Situation11 :isAbout :action_suspension_02 .
+
+:Situation12 :isAbout :action_suspension_03 .
+
+:Situation13 :isAbout :action_suspension_05 .
+
 :EIO_ref_01 :wouldCauseDamageTo :suspect_04 .
 
-_:node49 owl:intersectionOf _:node50 .
+_:node1 owl:intersectionOf _:node2 .
 
-_:node53 owl:intersectionOf _:node54 .
+_:node5 owl:intersectionOf _:node6 .
 
-_:node57 owl:intersectionOf _:node58 .
+_:node9 owl:intersectionOf _:node10 .
 
-_:node61 owl:intersectionOf _:node62 .
+_:node13 owl:intersectionOf _:node14 .
 
-_:node65 owl:intersectionOf _:node66 .
+_:node17 owl:intersectionOf _:node18 .
 
-_:node69 owl:intersectionOf _:node70 .
+_:node21 owl:intersectionOf _:node22 .
 
-_:node51 owl:onProperty nrv:hasViolation;
+_:node25 owl:intersectionOf _:node26 .
+
+_:node3 owl:onProperty nrv:hasViolation;
   owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger;
   owl:onClass nrv:Violation .
 
-_:node55 owl:onProperty nrv:hasViolation;
+_:node7 owl:onProperty nrv:hasViolation;
   owl:onClass nrv:Violation;
   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger .
 
-_:node59 owl:onProperty :containsModality;
+_:node11 owl:onProperty :containsModality;
+  owl:someValuesFrom :FacultativeModality .
+
+_:node15 owl:onProperty :containsModality;
   owl:someValuesFrom :ObligationModality .
 
-_:node63 owl:onProperty :containsModality;
+_:node19 owl:onProperty :containsModality;
   owl:someValuesFrom :PermissionModality .
 
-_:node67 owl:onProperty :containsModality;
+_:node23 owl:onProperty :containsModality;
   owl:someValuesFrom :ProhibitionModality .
 
-_:node71 owl:onProperty :containsModality;
+_:node27 owl:onProperty :containsModality;
   owl:someValuesFrom nrv:DeonticModality .
 
 nrv:CompliantRequirement owl:disjointWith nrv:ViolatedRequirement .
 
 :NonSensitivePersonalData owl:disjointWith :SensitivePersonalData .
-
-:PrivateData owl:disjointWith :PublicData .
