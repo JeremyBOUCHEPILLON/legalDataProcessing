@@ -8,25 +8,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 INSERT { graph ?g { :LED10_implicit_compliant nrv:hasCompliance ?g }}
 WHERE { 
-	{SELECT DISTINCT ?action
-		WHERE {
-		:LED10_implicit_compliant :isApplicable ?g .
-        	?action a :Action .
-    		?action :involvesData ?dataset .
-    		?dataset :containsData ?data .
-		FILTER NOT EXISTS {
-			?action :isNecessary "true"^^xsd:boolean .
-			{ ?action :isAuthorizedLaw "true"^^xsd:boolean .}
-			UNION
-			{ ?action :protectsVitalInterests "true"^^xsd:boolean .}
-			UNION
-			{ FILTER NOT EXISTS {
-        			?data a :SensitivePersonalData .
-        			FILTER NOT EXISTS {
-            				?data a :PublicData .
-        			}
-    			}}
-		}
+    {SELECT DISTINCT ?action
+    WHERE {
+        :LED10_implicit_compliant :isApplicable ?g .
 	}}
-	GRAPH ?g {?action ?p ?v.}
+    GRAPH ?g {?action ?p ?v.}
 }
