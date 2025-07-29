@@ -1,0 +1,873 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#"
+     xml:base="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing"
+     xmlns:adr="https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses#"
+     xmlns:nrv="http://ns.inria.fr/nrv#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:lrml="http://docs.oasis-open.org/legalruleml/ns/v1.0#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:lrmlmm="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#"
+     xmlns:rulemm="http://docs.oasis-open.org/legalruleml/ns/v1.0/rule-metamodel#"
+     xmlns:sparql-service-description="http://www.w3.org/ns/sparql-service-description#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2006/time#generalDay -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2006/time#generalDay"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#generalMonth -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2006/time#generalMonth"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#generalYear -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2006/time#generalYear"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ns.inria.fr/nrv#hasCompliance -->
+
+    <owl:ObjectProperty rdf:about="http://ns.inria.fr/nrv#hasCompliance">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#isCompliantWith"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:comment>Indicates the situations that comply with a rule</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#containsElem -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#containsElem">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#isPartOfDoc"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Document"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+        <rdfs:comment>Indicates what DocumentElement are in a Document.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#containsModality -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#containsModality">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+        <rdfs:range rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:comment>Indication that a statement contains a certain modality</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#hasApplicableCode -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#hasApplicableCode">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#isApplicableToOffence"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Offence"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#hasApplicableRule -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#hasApplicableRule">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#isApplicable"/>
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+        <rdfs:comment>Indicates a rule (regulative statement) applicable to a situation (factual statement).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#hasSource -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#hasSource">
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Document"/>
+        <rdfs:comment>inspired by lrmlmm:hasLegalSource</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#hasSources -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#hasSources">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RuleBaseDocument"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#hasStatement -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#hasStatement">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LogicalFormulas"/>
+        <rdfs:range rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:label>hasLogicalFormula</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#hasStatements -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#hasStatements">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RuleBaseDocument"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LogicalFormulas"/>
+        <rdfs:label>hasLogicalFormulas</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#isApplicable -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#isApplicable">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:comment>Indicates which situation (factual statement) a rule (regulative statement) can be applied to.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#isApplicableToOffence -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#isApplicableToOffence">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Offence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#isCompliantWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#isCompliantWith">
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+        <rdfs:comment>Indicates what rules a situation comply to.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#isPartOfDoc -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#isPartOfDoc">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Document"/>
+        <rdfs:comment>Indicates the document a DocumentElement is part of</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#isViolatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#isViolatedBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:comment>Indicates the situations that violate a rule</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#violates -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#violates">
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+        <rdfs:comment>Indicates which rules a situation violates.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#LegalRuleMLDocument"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement -->
+
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+    </owl:Class>
+    
+
+
+    <!-- http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#LegalRuleMLDocument -->
+
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#LegalRuleMLDocument">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RuleBaseDocument"/>
+    </owl:Class>
+    
+
+
+    <!-- http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources -->
+
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#Compliance -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#Compliance">
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:label>ComplianceStatement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#CompliantRequirement -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#CompliantRequirement">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#ViolableRequirement"/>
+        <owl:disjointWith rdf:resource="http://ns.inria.fr/nrv#ViolatedRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#DeonticModality -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#DeonticModality">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#Modality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#LogicalFormula -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#LogicalFormula">
+        <rdfs:label xml:lang="en">Logical Formua</rdfs:label>
+        <rdfs:label xml:lang="en">Statement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#Modality -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#Modality"/>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#NonViolableRequirement -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#NonViolableRequirement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#ViolableRequirement -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#ViolableRequirement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#ViolatedRequirement -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#ViolatedRequirement">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#ViolableRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ns.inria.fr/nrv#Violation -->
+
+    <owl:Class rdf:about="http://ns.inria.fr/nrv#Violation">
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:label>ViolationStatement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Alinea -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Alinea">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Applicability -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Applicability">
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:label>ApplicabilityStatement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Article -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Article">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Chapter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Chapter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Clause -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Clause">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#ConstitutiveStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#ConstitutiveStatement">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:comment>Definition of concepts and ideas in a regulation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Decision -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Decision">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Directive -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Directive">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Division -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Division">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Document -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Document"/>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement">
+        <rdfs:comment>class for any part of a larger documents. Its sub-classes have been nostly extracted from the Akoma Ntoso schema</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#ExceptionStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#ExceptionStatement">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#FacultativeModality -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#FacultativeModality">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:comment>Negation of an Obligation Modality</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#FacultativeStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#FacultativeStatement">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#containsModality"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#FacultativeModality"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#NonViolableRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Form -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Form">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Indent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Indent">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Language -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Language"/>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#LegalCode -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#LegalCode">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#LegalProvision -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#LegalProvision">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#LegalRecommendation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#LegalRecommendation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Legislation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Legislation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Level -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Level">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#List -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#List">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#LogicalFormulas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#LogicalFormulas">
+        <rdfs:label xml:lang="en">Statements</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#ObligationModality -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#ObligationModality">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#ObligationStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#ObligationStatement">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#containsModality"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#ObligationModality"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#ViolableRequirement"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Offence -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Offence">
+        <rdfs:label xml:lang="en">Crime</rdfs:label>
+        <rdfs:label xml:lang="fr">Infraction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Paragraph -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Paragraph">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Part -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Part">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#PermissionModality -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#PermissionModality">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:comment>Negation of an Prohibition Modality</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#PermissionStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#PermissionStatement">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#containsModality"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#PermissionModality"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#NonViolableRequirement"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Point -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Point">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#ProhibitionModality -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#ProhibitionModality">
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#ProhibitionStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#ProhibitionStatement">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#containsModality"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#ProhibitionModality"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#ViolableRequirement"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Proviso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Proviso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Regulation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Regulation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#LawText"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#RegulativeStatement">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ns.inria.fr/nrv#LogicalFormula"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#containsModality"/>
+                        <owl:someValuesFrom rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:label xml:lang="en">Deontic Statement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Rule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Rule">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#RuleBaseDocument -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#RuleBaseDocument">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#Document"/>
+        <rdfs:comment>Document grouping formal rules and statements</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Section -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Section">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#SituationDescriptionStatement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#SituationDescriptionStatement">
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subchapter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subchapter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subclause -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subclause">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subdivision -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subdivision">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Sublist -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Sublist">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subparagraph -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subparagraph">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subpart -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subpart">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subrule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subrule">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subsection -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subsection">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Subtitle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Subtitle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules.owl#Title -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules.owl#Title">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules.owl#DocumentElement"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#BasicFederatedQuery">
+        <rdfs:comment>sd:BasicFederatedQuery, when used as the object of the sd:feature property, indicates that the SPARQL service supports basic federated query using the SERVICE keyword as defined by SPARQL 1.1 Federation Extensions.</rdfs:comment>
+        <rdfs:label>Basic Federated Query</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#DereferencesURIs">
+        <rdfs:comment>sd:DereferencesURIs, when used as the object of the sd:feature property, indicates that a SPARQL service will dereference URIs used in FROM/FROM NAMED and USING/USING NAMED clauses and use the resulting RDF in the dataset during query evaluation.</rdfs:comment>
+        <rdfs:label>Dereferences URIs</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#EmptyGraphs">
+        <rdfs:label>Empty Graphs</rdfs:label>
+        <rdfs:comment>sd:EmptyGraphs, when used as the object of the sd:feature property, indicates that the underlying graph store supports empty graphs. A graph store that supports empty graphs MUST NOT remove graphs that are left empty after triples are removed from them.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#RequiresDataset">
+        <rdfs:comment>sd:RequiresDataset, when used as the object of the sd:feature property, indicates that the SPARQL service requires an explicit dataset declaration (based on either FROM/FROM NAMED clauses in a query, USING/USING NAMED clauses in an update, or the appropriate SPARQL Protocol parameters).</rdfs:comment>
+        <rdfs:label>Requires Dataset</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#SPARQL10Query">
+        <rdfs:label>SPARQL 1.0 Query</rdfs:label>
+        <rdfs:comment>sd:SPARQL10Query is an sd:Language representing the SPARQL 1.0 Query language.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#SPARQL11Query">
+        <rdfs:label>SPARQL 1.1 Query</rdfs:label>
+        <rdfs:comment>sd:SPARQL11Query is an sd:Language representing the SPARQL 1.1 Query language.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#SPARQL11Update">
+        <rdfs:label>SPARQL 1.1 Update</rdfs:label>
+        <rdfs:comment>sd:SPARQLUpdate is an sd:Language representing the SPARQL 1.1 Update language.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#UnionDefaultGraph">
+        <rdfs:label>Union Default Graph</rdfs:label>
+        <rdfs:comment>sd:UnionDefaultGraph, when used as the object of the sd:feature property, indicates that the default graph of the dataset used during query and update evaluation (when an explicit dataset is not specified) is comprised of the union of all the named graphs in that dataset.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#availableGraphs">
+        <rdfs:comment>Relates an instance of sd:Service to a description of the graphs which are allowed in the construction of a dataset either via the SPARQL Protocol, with FROM/FROM NAMED clauses in a query, or with USING/USING NAMED in an update request, if the service limits the scope of dataset construction.</rdfs:comment>
+        <rdfs:label>available graph descriptions</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#defaultGraph">
+        <rdfs:comment>Relates an instance of sd:Dataset to the description of its default graph.</rdfs:comment>
+        <rdfs:label>default graph</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#entailmentRegime">
+        <rdfs:comment>Relates a named graph description with a resource representing an entailment regime used for basic graph pattern matching over that graph.</rdfs:comment>
+        <rdfs:label>entailment regime</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#graph">
+        <rdfs:label>graph</rdfs:label>
+        <rdfs:comment>Relates a named graph to its graph description.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#namedGraph">
+        <rdfs:comment>Relates an instance of sd:GraphCollection (or its subclass sd:Dataset) to the description of one of its named graphs. The description of such a named graph MUST include the sd:name property and MAY include the sd:graph property.</rdfs:comment>
+        <rdfs:label>named graph</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/ns/sparql-service-description#supportedEntailmentProfile">
+        <rdfs:label>supported entailment profile</rdfs:label>
+        <rdfs:comment>Relates a named graph description with a resource representing a supported profile of the entailment regime (as declared by sd:entailmentRegime) used for basic graph pattern matching over that graph.</rdfs:comment>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
