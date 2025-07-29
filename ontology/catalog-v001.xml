@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.semanticweb.org/jbouchep/leads/rules.owl" uri="file:////wsl.localhost/Ubuntu/home/jbouchep/these/git/legalDataProcessing/ontology/rules.owl"/>
+    <uri id="User Entered Import Resolution" name="http://www.semanticweb.org/jbouchep/leads/lea-procedures.owl" uri="file:////wsl.localhost/Ubuntu/home/jbouchep/these/git/legalDataProcessing/ontology/lea-procedures.owl"/>
+    <group id="Folder Repository, directory=file:////wsl.localhost/Ubuntu/home/jbouchep/these/git/legalDataProcessing/ontology/, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1753803065994" name="http://www.semanticweb.org/jbouchep/leads/leads-full.owl" uri="leads-full.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1753803065994" name="duplicate:http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing" uri="lea-procedures.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1753803065994" name="duplicate:http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing" uri="rules.owl"/>
+    </group>
+</catalog>
