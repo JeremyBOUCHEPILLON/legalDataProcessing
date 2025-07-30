@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#"
-     xml:base="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing"
+<rdf:RDF xmlns="http://www.semanticweb.org/jbouchep/leads/rules.owl#"
+     xml:base="http://www.semanticweb.org/jbouchep/leads/rules.owl"
      xmlns:adr="https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses#"
      xmlns:nrv="http://ns.inria.fr/nrv#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
