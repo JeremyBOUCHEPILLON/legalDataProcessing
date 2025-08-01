@@ -2,9 +2,9 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="http://www.semanticweb.org/jbouchep/leads/rules" uri="rules.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1753977653920" name="http://www.semanticweb.org/jbouchep/leads/lea-procedures" uri="lea-procedures.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1753977653920" name="http://www.semanticweb.org/jbouchep/leads/leads-full.owl" uri="leads-full.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1753977653920" name="http://www.semanticweb.org/jbouchep/leads/rules" uri="rules.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1753977653920" name="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing" uri="legal_data_sharing_v2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1754061520147" name="http://www.semanticweb.org/jbouchep/leads/lea-procedures" uri="lea-procedures.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1754061520147" name="http://www.semanticweb.org/jbouchep/leads/leads-full" uri="leads-full.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1754061520147" name="http://www.semanticweb.org/jbouchep/leads/rules" uri="rules.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1754061520147" name="http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing" uri="legal_data_sharing_v2.owl"/>
     </group>
 </catalog>

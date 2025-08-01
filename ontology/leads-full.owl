@@ -7,11 +7,30 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rules="http://www.semanticweb.org/jbouchep/leads/rules#"
+     xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:lea-procedures="http://www.semanticweb.org/jbouchep/leads/lea-procedures#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/jbouchep/leads/leads-full">
         <owl:imports rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures"/>
         <owl:imports rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules"/>
+        <dcterms:license>http://creativecommons.org/licenses/by/3.0/</dcterms:license>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
 </rdf:RDF>
 
 

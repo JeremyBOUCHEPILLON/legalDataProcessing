@@ -11,8 +11,28 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:lrmlmm="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#"
      xmlns:rulemm="http://docs.oasis-open.org/legalruleml/ns/v1.0/rule-metamodel#"
+     xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:sparql-service-description="http://www.w3.org/ns/sparql-service-description#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/jbouchep/leads/rules"/>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/jbouchep/leads/rules">
+        <dcterms:license>http://creativecommons.org/licenses/by/3.0/</dcterms:license>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
     
 
 
@@ -80,6 +100,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#formalizationOf -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#formalizationOf">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#formalizedBy"/>
         <rdfs:domain rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
     </owl:ObjectProperty>
@@ -167,6 +188,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#inLanguage -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#inLanguage">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#Document"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#Language"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#isApplicable -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isApplicable">
@@ -209,6 +239,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#isViolatedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isViolatedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#violates"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
         <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
         <rdfs:comment>Indicates the situations that violate a rule</rdfs:comment>

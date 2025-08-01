@@ -11,8 +11,28 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:lrmlmm="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#"
      xmlns:rulemm="http://docs.oasis-open.org/legalruleml/ns/v1.0/rule-metamodel#"
+     xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:sparql-service-description="http://www.w3.org/ns/sparql-service-description#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures"/>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures">
+        <dcterms:license>http://creativecommons.org/licenses/by/3.0/</dcterms:license>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
     
 
 
@@ -56,16 +76,10 @@
     
 
 
-    <!-- http://ns.inria.fr/nrv#hasViolation -->
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#asksMeasure -->
 
-    <owl:ObjectProperty rdf:about="http://ns.inria.fr/nrv#hasViolation"/>
-    
-
-
-    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#asksMeasureEIO -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#asksMeasureEIO">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#EIO"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#asksMeasure">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#InvestigationMeasure"/>
     </owl:ObjectProperty>
     
@@ -138,6 +152,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasCompetentAuthorityEIO -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasCompetentAuthorityEIO">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityProc"/>
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#isCompetentAuthorityFor"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#EIO"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
@@ -167,6 +182,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasExecutionAuthorityAction -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasExecutionAuthorityAction">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityAct"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
     </owl:ObjectProperty>
@@ -176,6 +192,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasExecutionAuthorityEIO -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasExecutionAuthorityEIO">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityProc"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#EIO"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
     </owl:ObjectProperty>
@@ -223,6 +240,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasIssueAuthorityAction -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasIssueAuthorityAction">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityAct"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
     </owl:ObjectProperty>
@@ -232,6 +250,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasIssueAuthorityEIO -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasIssueAuthorityEIO">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityProc"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#EIO"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
     </owl:ObjectProperty>
@@ -288,7 +307,17 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasMotiveEIO -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasMotiveEIO">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasMotiveProc"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#EIO"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#GroundOfJustification"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasMotiveProc -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasMotiveProc">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#GroundOfJustification"/>
     </owl:ObjectProperty>
     
@@ -324,6 +353,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasReceptionAuthorityEIO -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasReceptionAuthorityEIO">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityProc"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#EIO"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
     </owl:ObjectProperty>
@@ -370,6 +400,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasValidationAuthorityAction -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasValidationAuthorityAction">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityAct"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
     </owl:ObjectProperty>
@@ -379,7 +410,26 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasValidationAuthorityEIO -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#hasValidationAuthorityEIO">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityProc"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#EIO"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityAct -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityAct">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityProc -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesAuthorityProc">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
     </owl:ObjectProperty>
     
@@ -426,15 +476,6 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesPersonMeasure">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#InvestigationMeasure"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesProcedure -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesProcedure">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
     </owl:ObjectProperty>
     
 
@@ -552,6 +593,25 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#isRepresentativeOf">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#NaturalPerson"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#LegalPerson"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToAction">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToProcedure"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToProcedure -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToProcedure">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
     </owl:ObjectProperty>
     
 
@@ -800,6 +860,15 @@
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment>indicates the fact that an action is authorized by Union or Member State law</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#isFacultative -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#isFacultative">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     </owl:DatatypeProperty>
     
 
