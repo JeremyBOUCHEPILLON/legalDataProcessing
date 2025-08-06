@@ -1,0 +1,7 @@
+Article 2
+Scope
+1.  This  Directive applies to  the  processing of  personal data  by  competent  authorities  for  the  purposes  set  out  in Article 1(1).
+2.  This  Directive applies to  the  processing of  personal data  wholly or  partly  by  automated  means, and  to  the processing other than by automated means of personal data which form part of a filing system or are intended to form part of a filing system.
+3.  This Directive does not apply to the processing of personal data:
+	(a)  in the course of an activity which falls outside the scope of Union law;
+	(b)  by the Union institutions, bodies, offices and agencies.

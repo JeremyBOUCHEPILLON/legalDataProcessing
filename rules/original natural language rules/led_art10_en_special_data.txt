@@ -1,0 +1,6 @@
+Article 10
+Processing of special categories of personal data
+Processing of personal data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, or trade union membership, and the processing of genetic data, biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person's sex life or sexual orientation shall be allowed only where strictly necessary, subject to appropriate safeguards for the rights and freedoms of the data subject, and only:
+	(a)  where authorised by Union or Member State law;
+	(b)  to protect the vital interests of the data subject or of another natural person; or
+	(c)  where such processing relates to data which are manifestly made public by the data subject.
