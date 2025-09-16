@@ -17,7 +17,7 @@ WHERE {
 		?action2 :involvesEvidence ?evidence .
 		?evidence :linkedToProcedure ?eio .
 		?eio a :EIO .
-		?eio :irreversibleDamage "true"^^xsd:boolean .
+		?action2 :causesDamages "true"^^xsd:boolean .
 	}}
 	GRAPH ?situation {?action ?p ?v.}
 }

@@ -7,10 +7,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
 INSERT { graph ?g { :LED10_implicit_compliant nrv:hasCompliance ?g }}
-WHERE { 
-    {SELECT DISTINCT ?action
-    WHERE {
-        :LED10_implicit_compliant :isApplicable ?g .
+WHERE {
+	{SELECT DISTINCT ?action
+	WHERE {
+		:LED10_implicit_compliant :isApplicable ?g .
 	}}
-    GRAPH ?g {?action ?p ?v.}
+	GRAPH ?g {?action ?p ?v.}
 }

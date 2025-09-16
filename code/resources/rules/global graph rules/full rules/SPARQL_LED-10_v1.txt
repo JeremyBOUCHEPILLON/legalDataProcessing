@@ -6,7 +6,7 @@ PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sha
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
-INSERT { :LED10 nrv:hasCompliance ?situation }
+INSERT { :LED10 nrv:hasCompliance ?situation }}
 WHERE { 
 	?situation :isAbout ?action .
 	?action a :Processing .
@@ -18,11 +18,5 @@ WHERE {
     	UNION
     	{ ?action :protectsVitalInterests "true"^^xsd:boolean }
     	UNION
-    	{ FILTER NOT EXISTS {
-            ?dataset :containsData ?data2 .
-            ?data2 a :SensitivePersonalData .
-            FILTER NOT EXISTS {
-                ?data2 a :PublicData .
-            }
-	}}
+    	{?data a :PublicData }
 }

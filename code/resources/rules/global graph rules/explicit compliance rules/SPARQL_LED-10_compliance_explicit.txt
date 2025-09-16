@@ -10,7 +10,7 @@ INSERT { :LED10_explicit_compliant nrv:hasCompliance ?situation .}
 WHERE {
 	:LED10_explicit_compliant :isApplicable ?situation .
 	?situation :isAbout ?action .
-        ?action a :Action .
+        ?action a :Processing .
     	?action :involvesData ?dataset .
     	?dataset :containsData ?data .
 	?action :isNecessary "true"^^xsd:boolean .
@@ -19,9 +19,10 @@ WHERE {
 	{ ?action :protectsVitalInterests "true"^^xsd:boolean .}
 	UNION
 	{ FILTER NOT EXISTS {
-        	?data a :SensitivePersonalData .
-        	FILTER NOT EXISTS {
-            		?data a :PublicData .
-        	}
-    	}}
+            ?dataset :containsData ?data2 .
+            ?data2 a :SensitivePersonalData .
+            FILTER NOT EXISTS {
+                ?data2 a :PublicData .
+            }
+	}}
 }

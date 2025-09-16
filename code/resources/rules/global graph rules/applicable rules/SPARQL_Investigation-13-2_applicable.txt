@@ -7,6 +7,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
 INSERT {
+	:Investigation13_2a_explicit_compliant :isApplicable ?situation .
+	:Investigation13_2a_implicit_compliant :isApplicable ?situation .
 	:Investigation13_2b_explicit_compliant :isApplicable ?situation .
 }
 WHERE {
@@ -15,6 +17,6 @@ WHERE {
 	?action :suspends ?action2 .
 	?action2 a :Transmission .
 	?action2 :involvesEvidence ?evidence .
-	?evidence :linkedToProcedure ?eio .
+	?action2 :involvesProcedure ?eio .
 	?eio a :EIO .
 }
