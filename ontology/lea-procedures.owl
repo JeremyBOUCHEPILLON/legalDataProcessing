@@ -502,6 +502,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesProcedure -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#involvesProcedure">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#actionInvolves"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToAction"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#isAddressOfAuthority -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#isAddressOfAuthority">
@@ -622,18 +633,18 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToAction -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToAction">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToProcedure"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToProcedure -->
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToEvidenceProcedure -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToProcedure">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToEvidenceProcedure">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#linkedToProcedureEvidence"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Evidence"/>
     </owl:ObjectProperty>
     
 
@@ -670,6 +681,24 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#mustRespect">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Authority"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#procedureInvolves -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#procedureInvolves">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#procedureInvolvesData -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#procedureInvolvesData">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#procedureInvolves"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Procedure"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#DataSet"/>
     </owl:ObjectProperty>
     
 
@@ -1800,14 +1829,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#OtherMeasure -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#OtherMeasure">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#InvestigationMeasure"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#PUKCodesData -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#PUKCodesData">
@@ -2165,6 +2186,14 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Transmission">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Processing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/lea-procedures#UncommonInvestigationMeasure -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/lea-procedures#UncommonInvestigationMeasure">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#InvestigationMeasure"/>
     </owl:Class>
     
 

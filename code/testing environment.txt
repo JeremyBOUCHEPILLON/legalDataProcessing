@@ -1,1 +1,0 @@
-the code in this folder was tested with the knowledge graph accessed through a locally deployed (localhost) Apache Jena Fuseki Server

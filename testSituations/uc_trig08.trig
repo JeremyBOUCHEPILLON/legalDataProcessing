@@ -20,6 +20,8 @@ GRAPH :Situation08 {
        :isAuthorizedLaw "true"^^xsd:boolean;
        :usesComMean :EJN.
        
+   :EJN
+       a :MeanLeavingWrittenTraces .
 
    :EIO_02
        a :EIO;

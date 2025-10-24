@@ -13,36 +13,36 @@ rdfs:label "Law Enforcement Directive"@en ;
 
 :LED_10 a :LawArticle;
 rdfs:label "LED Art 10 : Special Data Processing"@en ;
-:hasRelatedRule :LED10_applicable ;
-:hasRelatedRule :LED10_explicit_compliant ;
-:hasRelatedRule :LED10_implicit_compliant ;
-:hasRelatedRule :LED10_exception .
+:hasRelatedRule :LED_10_applicable ;
+:hasRelatedRule :LED_10_explicit_compliant ;
+:hasRelatedRule :LED_10_implicit_compliant ;
+:hasRelatedRule :LED_10_exception .
 
 
 :LSS1 a lrmlmm:Sources ;
 :hasSource :LED  .
 
-:LRD1 a lrmlmm:LegalRuleMLDocument ;
+:LRD1 a :RuleBaseDocument ;
 :hasSources :LSS1 ;
 :hasStatements :SS1 .
 
 :SS1 a :LogicalFormulas ;
-:hasStatement :LED10_applicable ;
-:hasStatement :LED10_explicit_compliant ;
-:hasStatement :LED10_implicit_compliant ;
-:hasStatement :LED10_exception .
+:hasStatement :LED_10_applicable ;
+:hasStatement :LED_10_explicit_compliant ;
+:hasStatement :LED_10_implicit_compliant ;
+:hasStatement :LED_10_exception .
 
 
-:LED10_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+:LED_10_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
 rdfs:label "Applicability of Art 10 from the LED"@en .
 
-:LED10_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
+:LED_10_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
 rdfs:label "Compliance to Art 10 from the LED"@en .
 
-:LED10_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
+:LED_10_implicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ProhibitionStatement ;
 rdfs:label "Negation of Compliance to Art 10 from the LED"@en .
 
-:LED10_exception a nrv:LogicalFormula, :ExceptionStatement ;
+:LED_10_exception a nrv:LogicalFormula, :ExceptionStatement ;
 rdfs:label "Exception for Art 10 from the LED"@en .
 
 
@@ -83,14 +83,14 @@ rdfs:label "LawEIO Art 7.6 : Transmission of an EIO"@en ;
 
 :Investigation13_2a a :LawArticle;
 rdfs:label "LawEIO Art 13.2-a : Transmission of proof elements"@en ;
-:hasRelatedRule :Investigation13_2a_applicable ;
+:hasRelatedRule :Investigation13_2_applicable ;
 :hasRelatedRule :Investigation13_2a_explicit_compliant ;
 :hasRelatedRule :Investigation13_2a_implicit_compliant ;
 :hasRelatedRule :Investigation13_2a_exception .
 
 :Investigation13_2b a :LawArticle;
 rdfs:label "LawEIO Art 13.2-b : Transmission of proof elements"@en ;
-:hasRelatedRule :Investigation13_2b_applicable ;
+:hasRelatedRule :Investigation13_2_applicable ;
 :hasRelatedRule :Investigation13_2b_explicit_compliant .
 
 :Investigation32_1 a :LawArticle;
@@ -103,7 +103,7 @@ rdfs:label "LawEIO Art 32 : Provisory measures"@en ;
 :LSS2 a lrmlmm:Sources ;
 :hasSource :LawEIO  .
 
-:LRD2 a lrmlmm:LegalRuleMLDocument ;
+:LRD2 a :RuleBaseDocument ;
 :hasSources :LSS2 ;
 :hasStatements :SS2 .
 
@@ -118,11 +118,10 @@ rdfs:label "LawEIO Art 32 : Provisory measures"@en ;
 :hasStatement :Investigation7_4_explicit_compliant ;
 :hasStatement :Investigation7_6_applicable ;
 :hasStatement :Investigation7_6_explicit_compliant ;
-:hasStatement :Investigation13_2a_applicable ;
+:hasStatement :Investigation13_2_applicable ;
 :hasStatement :Investigation13_2a_explicit_compliant ;
 :hasStatement :Investigation13_2a_implicit_compliant ;
 :hasStatement :Investigation13_2a_exception ;
-:hasStatement :Investigation13_2b_applicable ;
 :hasStatement :Investigation13_2b_explicit_compliant ;
 :hasStatement :Investigation32_1_applicable ;
 :hasStatement :Investigation32_1_explicit_compliant .
@@ -164,7 +163,7 @@ rdfs:label "Applicability of Art 7.6 from LawEIO"@en .
 rdfs:label "Compliance to Art 7.6 from LawEIO"@en .
 
 
-:Investigation13_2a_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
+:Investigation13_2_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
 rdfs:label "Applicability of Art 13.2-a from LawEIO"@en .
 
 :Investigation13_2a_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
@@ -176,9 +175,6 @@ rdfs:label "Negation of Compliance to Art 13.2-a from LawEIO"@en .
 :Investigation13_2a_exception a nrv:LogicalFormula, :ExceptionStatement ;
 rdfs:label "Exception for Art 13.2-a from LawEIO"@en .
 
-
-:Investigation13_2b_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
-rdfs:label "Applicability of Art 13.2-b from LawEIO"@en .
 
 :Investigation13_2b_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ObligationStatement ;
 rdfs:label "Compliance to Art 13.2-b from LawEIO"@en .

@@ -9,7 +9,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:lrml="http://docs.oasis-open.org/legalruleml/ns/v1.0#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:lrmlmm="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#"
+     xmlns:lrmlmm="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#"
      xmlns:rulemm="http://docs.oasis-open.org/legalruleml/ns/v1.0/rule-metamodel#"
      xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:sparql-service-description="http://www.w3.org/ns/sparql-service-description#">
@@ -76,6 +76,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#ElemContainsElem -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#ElemContainsElem">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#containsElem -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#containsElem">
@@ -91,7 +100,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#containsModality">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
-        <rdfs:range rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality"/>
         <rdfs:comment>Indication that a statement contains a certain modality</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -101,7 +110,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#formalizationOf">
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#formalizedBy"/>
-        <rdfs:domain rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
     </owl:ObjectProperty>
     
@@ -111,7 +120,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#formalizedBy">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
-        <rdfs:range rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
     </owl:ObjectProperty>
     
 
@@ -130,7 +139,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#hasApplicableRule">
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#isApplicable"/>
-        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
         <rdfs:comment>Indicates a rule (regulative statement) applicable to a situation (factual statement).</rdfs:comment>
     </owl:ObjectProperty>
@@ -142,8 +151,19 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#hasCompliance">
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#isCompliantWith"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
-        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#isViolatedBy"/>
         <rdfs:comment>Indicates the situations that comply with a rule</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#hasException -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#hasException">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#isExceptionOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#ExceptionStatement"/>
     </owl:ObjectProperty>
     
 
@@ -151,7 +171,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#hasSource -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#hasSource">
-        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Sources"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#LawText"/>
         <rdfs:comment>inspired by lrmlmm:hasLegalSource</rdfs:comment>
     </owl:ObjectProperty>
@@ -163,7 +183,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#hasSources">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RuleBaseDocument"/>
-        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Sources"/>
     </owl:ObjectProperty>
     
 
@@ -172,7 +192,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#hasStatement">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#LogicalFormulas"/>
-        <rdfs:range rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
         <rdfs:label>hasLogicalFormula</rdfs:label>
     </owl:ObjectProperty>
     
@@ -201,7 +221,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isApplicable">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
-        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement"/>
         <rdfs:comment>Indicates which situation (factual statement) a rule (regulative statement) can be applied to.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -219,9 +239,18 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#isCompliantWith -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isCompliantWith">
-        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
         <rdfs:comment>Indicates what rules a situation comply to.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#isExceptionOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isExceptionOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#ExceptionStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
     </owl:ObjectProperty>
     
 
@@ -241,7 +270,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isViolatedBy">
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#violates"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
-        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement"/>
         <rdfs:comment>Indicates the situations that violate a rule</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -250,7 +279,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#violates -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#violates">
-        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
         <rdfs:comment>Indicates which rules a situation violates.</rdfs:comment>
     </owl:ObjectProperty>
@@ -260,9 +289,29 @@
     <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
 
     <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
-        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#LegalRuleMLDocument"/>
-        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+        <rdfs:domain rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LegalRuleMLDocument"/>
+        <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Sources"/>
     </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#entryIntoForce -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#entryIntoForce">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#LawText"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -277,32 +326,55 @@
     
 
 
-    <!-- http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement -->
+    <!-- http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality -->
 
-    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality">
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Modality"/>
     </owl:Class>
     
 
 
-    <!-- http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#LegalRuleMLDocument -->
+    <!-- http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#FactualStatement -->
 
-    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#LegalRuleMLDocument">
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#FactualStatement">
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
+    </owl:Class>
+    
+
+
+    <!-- http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LegalRuleMLDocument -->
+
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LegalRuleMLDocument">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RuleBaseDocument"/>
     </owl:Class>
     
 
 
-    <!-- http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources -->
+    <!-- http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula -->
 
-    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#Sources"/>
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula">
+        <rdfs:label xml:lang="en">Logical Formua</rdfs:label>
+        <rdfs:label xml:lang="en">Statement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Modality -->
+
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Modality"/>
+    
+
+
+    <!-- http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Sources -->
+
+    <owl:Class rdf:about="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#Sources"/>
     
 
 
     <!-- http://ns.inria.fr/nrv#Compliance -->
 
     <owl:Class rdf:about="http://ns.inria.fr/nrv#Compliance">
-        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#FactualStatement"/>
         <rdfs:label>ComplianceStatement</rdfs:label>
     </owl:Class>
     
@@ -314,29 +386,6 @@
         <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#ViolableRequirement"/>
         <owl:disjointWith rdf:resource="http://ns.inria.fr/nrv#ViolatedRequirement"/>
     </owl:Class>
-    
-
-
-    <!-- http://ns.inria.fr/nrv#DeonticModality -->
-
-    <owl:Class rdf:about="http://ns.inria.fr/nrv#DeonticModality">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#Modality"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ns.inria.fr/nrv#LogicalFormula -->
-
-    <owl:Class rdf:about="http://ns.inria.fr/nrv#LogicalFormula">
-        <rdfs:label xml:lang="en">Logical Formua</rdfs:label>
-        <rdfs:label xml:lang="en">Statement</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://ns.inria.fr/nrv#Modality -->
-
-    <owl:Class rdf:about="http://ns.inria.fr/nrv#Modality"/>
     
 
 
@@ -367,7 +416,7 @@
     <!-- http://ns.inria.fr/nrv#Violation -->
 
     <owl:Class rdf:about="http://ns.inria.fr/nrv#Violation">
-        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#FactualStatement"/>
         <rdfs:label>ViolationStatement</rdfs:label>
     </owl:Class>
     
@@ -384,7 +433,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#Applicability -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#Applicability">
-        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#FactualStatement"/>
         <rdfs:label>ApplicabilityStatement</rdfs:label>
     </owl:Class>
     
@@ -417,7 +466,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#ConstitutiveStatement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#ConstitutiveStatement">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
         <rdfs:comment>Definition of concepts and ideas in a regulation</rdfs:comment>
     </owl:Class>
     
@@ -464,7 +513,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#ExceptionStatement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#ExceptionStatement">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
     </owl:Class>
     
 
@@ -472,7 +521,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#FacultativeModality -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#FacultativeModality">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality"/>
         <rdfs:comment>Negation of an Obligation Modality</rdfs:comment>
     </owl:Class>
     
@@ -578,7 +627,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#ObligationModality -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#ObligationModality">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality"/>
     </owl:Class>
     
 
@@ -639,7 +688,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#PermissionModality -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#PermissionModality">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality"/>
         <rdfs:comment>Negation of an Prohibition Modality</rdfs:comment>
     </owl:Class>
     
@@ -676,7 +725,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#ProhibitionModality -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#ProhibitionModality">
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality"/>
     </owl:Class>
     
 
@@ -731,15 +780,15 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://ns.inria.fr/nrv#LogicalFormula"/>
+                    <rdf:Description rdf:about="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#containsModality"/>
-                        <owl:someValuesFrom rdf:resource="http://ns.inria.fr/nrv#DeonticModality"/>
+                        <owl:someValuesFrom rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://ns.inria.fr/nrv#LogicalFormula"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
         <rdfs:label xml:lang="en">Deontic Statement</rdfs:label>
     </owl:Class>
     
@@ -762,6 +811,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#SPARQLRulesDocument -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#SPARQLRulesDocument">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RuleBaseDocument"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#Section -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#Section">
@@ -773,7 +830,7 @@
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement">
-        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#FactualStatement"/>
+        <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#FactualStatement"/>
     </owl:Class>
     
 
