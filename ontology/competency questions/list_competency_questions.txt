@@ -1,0 +1,20 @@
+Competency questions:
+
+
+1) Which are the data or evidences involved in an EIO procedure? What are their types / sub-types (e.g "Sensitive Personal Data")?
+    
+2) What is the context in which a procedure takes place?
+    
+3) Which are the authorities involved in a procedure and what are their roles?
+
+4) Are there people (suspects, witnesses,...) involved in a procedure and in which way are they involved?
+
+5) What are the main features to characterize a dataset? its data?
+
+6) Which rule expresses constraints on the use of a dataset in a standard context? in an emergency context?
+
+7) What are the rules applicable to a situation? What are the rules complied with by a situation?
+
+8) What kind of conclusion does a rule produce ? Is it a permission ? A facultative ? An obligation ? A Prohibition ? Does it have exceptions ?
+
+9) Where does a formal rule come from? When did it come into effect? 

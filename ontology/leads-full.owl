@@ -31,6 +31,26 @@
     <!-- http://purl.org/dc/terms/license -->
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/leads-full#isAbout -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/leads-full#isAbout">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#SituationDescriptionStatement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/lea-procedures#Action"/>
+    </owl:ObjectProperty>
 </rdf:RDF>
 
 

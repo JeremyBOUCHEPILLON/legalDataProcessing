@@ -1,0 +1,21 @@
+PREFIX nrv: <http://ns.inria.fr/nrv#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX lrml: <http://docs.oasis-open.org/legalruleml/ns/v1.0#>
+PREFIX lrmlmm: <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#>
+PREFIX lea-proc: <http://www.semanticweb.org/jbouchep/leads/lea-procedures#>
+PREFIX rules: <http://www.semanticweb.org/jbouchep/leads/rules#>
+
+
+
+
+SELECT DISTINCT ?dataset ?data ?datatype ?origin ?destination ?stored
+WHERE { 
+    ?dataset a lea-proc:Dataset .
+    ?dataset lea-proc:containsData ?data .
+    ?data a ?datatype .
+    OPTIONAL{ ?dataset lea-proc:hasOriginData ?origin .}
+    OPTIONAL{ ?dataset lea-proc:hasDestinationData ?destination .}
+    OPTIONAL{ ?data lea-proc:isInformationInPossessionOf ?stored .}
+}

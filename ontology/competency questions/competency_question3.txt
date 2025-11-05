@@ -1,0 +1,19 @@
+PREFIX nrv: <http://ns.inria.fr/nrv#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX lrml: <http://docs.oasis-open.org/legalruleml/ns/v1.0#>
+PREFIX lrmlmm: <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#>
+PREFIX lea-proc: <http://www.semanticweb.org/jbouchep/leads/lea-procedures#>
+PREFIX rules: <http://www.semanticweb.org/jbouchep/leads/rules#>
+
+
+
+
+SELECT DISTINCT ?procedure ?authority ?authorityType
+WHERE { 
+    ?procedure a lea-proc:Procedure .
+    ?procedure lea-proc:procedureInvolvesAuthority ?authority .
+    ?authority a lea-proc:Authority .
+    ?authority a ?authorityType .
+}

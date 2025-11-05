@@ -789,7 +789,8 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#LogicalFormula"/>
-        <rdfs:label xml:lang="en">Deontic Statement</rdfs:label>
+        <rdfs:label xml:lang="en">Deontic statement</rdfs:label>
+        <rdfs:label>Regulative statement</rdfs:label>
     </owl:Class>
     
 

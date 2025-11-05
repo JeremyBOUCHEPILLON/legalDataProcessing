@@ -1,0 +1,24 @@
+PREFIX nrv: <http://ns.inria.fr/nrv#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX lrml: <http://docs.oasis-open.org/legalruleml/ns/v1.0#>
+PREFIX lrmlmm: <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#>
+PREFIX lea-proc: <http://www.semanticweb.org/jbouchep/leads/lea-procedures#>
+PREFIX rules: <http://www.semanticweb.org/jbouchep/leads/rules#>
+PREFIX leads: <http://www.semanticweb.org/jbouchep/leads/leads-full#>
+
+
+
+
+
+SELECT DISTINCT ?rule ?situation ?context
+WHERE { 
+    ?rule a rules:RegulativeStatement .
+    ?rule rules:isApplicable ?situation .
+    ?situation a rules:SituationDescriptionStatement .
+    ?situation leads:isAbout ?action .
+    ?action a lea-proc:Action .
+    OPTIONAL{ ?procedure lea-proc:happensInSitationProcedure ?situation .
+	      ?situation a ?situationType .} 
+}
