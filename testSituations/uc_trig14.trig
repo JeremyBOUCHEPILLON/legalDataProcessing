@@ -1,0 +1,35 @@
+@prefix :  <http://www.semanticweb.org/jbouchep/ontologies/2023/10/legal_data_sharing#> .
+@prefix lrmlmm:  <http://docs.oasis-open.org/legalruleml/ns/mm/v1.0#> .
+
+
+{
+:Situation14 a lrmlmm:FactualStatement .
+}
+
+
+GRAPH :Situation14 {
+   :Situation14 :isAbout :action_suspension_06 .
+
+   :action_suspension_06
+       a :ActionSuspension;
+       :suspends :evidence_transmission_01;
+       :isPendingLegalRemedy "true"^^xsd:boolean;
+       :isInSituation :urgent_situation01.
+
+
+   :evidence_transmission_01
+       a :DataTransmission;
+       :involvesEvidence :evidence_set_01;
+       :involvesProcedure :EIO_ref_01.
+
+
+   :EIO_ref_01
+       a :EIO;
+       :wouldCauseDamageTo :suspect_04.
+
+   :suspect04
+       a :Person.
+
+   :urgent_situation01
+       a :EmergencySituation.
+}

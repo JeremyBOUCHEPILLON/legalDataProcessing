@@ -53,7 +53,6 @@ rdfs:label "Exception for Art 10 from the LED"@en .
 rdfs:label "Legal rules for European Investigation Order"@en ;
 :containsArticle :Investigation6_1 ;
 :containsArticle :Investigation7_1 ;
-:containsArticle :Investigation7_4 ;
 :containsArticle :Investigation7_6 ;
 :containsArticle :Investigation13_2a ;
 :containsArticle :Investigation13_2b ;
@@ -71,10 +70,6 @@ rdfs:label "LawEIO Art 7.1 : Transmission of an EIO"@en ;
 :hasRelatedRule :Investigation7_1_applicable ;
 :hasRelatedRule :Investigation7_1_explicit_compliant .
 
-:Investigation7_4 a :LawArticle;
-rdfs:label "LawEIO Art 7.4 : Transmission of an EIO"@en ;
-:hasRelatedRule :Investigation7_4_applicable ;
-:hasRelatedRule :Investigation7_4_explicit_compliant .
 
 :Investigation7_6 a :LawArticle;
 rdfs:label "LawEIO Art 7.6 : Transmission of an EIO"@en ;
@@ -114,8 +109,6 @@ rdfs:label "LawEIO Art 32 : Provisory measures"@en ;
 :hasStatement :Investigation6_1_exception ;
 :hasStatement :Investigation7_1_applicable ;
 :hasStatement :Investigation7_1_explicit_compliant ;
-:hasStatement :Investigation7_4_applicable ;
-:hasStatement :Investigation7_4_explicit_compliant ;
 :hasStatement :Investigation7_6_applicable ;
 :hasStatement :Investigation7_6_explicit_compliant ;
 :hasStatement :Investigation13_2_applicable ;
@@ -147,13 +140,6 @@ rdfs:label "Applicability of Art 7.1 from LawEIO"@en .
 
 :Investigation7_1_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :ObligationStatement ;
 rdfs:label "Compliance to Art 7.1 from LawEIO"@en .
-
-
-:Investigation7_4_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
-rdfs:label "Applicability of Art 7.4 from LawEIO"@en .
-
-:Investigation7_4_explicit_compliant a nrv:LogicalFormula, :ComplianceStatement, :PermissionStatement ;
-rdfs:label "Compliance to Art 7.4 from LawEIO"@en .
 
 
 :Investigation7_6_applicable a nrv:LogicalFormula, :ApplicabilityStatement ;
