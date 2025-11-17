@@ -76,21 +76,16 @@
     
 
 
-    <!-- http://www.semanticweb.org/jbouchep/leads/rules#ElemContainsElem -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#ElemContainsElem">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.semanticweb.org/jbouchep/leads/rules#containsElem -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#containsElem">
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#isPartOfDoc"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#Document"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#containsElem"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#elemContainsElem"/>
+        </owl:propertyChainAxiom>
         <rdfs:comment>Indicates what DocumentElement are in a Document.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -102,6 +97,28 @@
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#RegulativeStatement"/>
         <rdfs:range rdf:resource="http://docs.oasis-open.org/legalruleml/ns/v1.0/metamodel#DeonticModality"/>
         <rdfs:comment>Indication that a statement contains a certain modality</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#elemContainsElem -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#elemContainsElem">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#elemPartOfElem"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
+        <rdfs:comment>indicates that a part of a document contains another</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jbouchep/leads/rules#elemPartOfElem -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#elemPartOfElem">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
     </owl:ObjectProperty>
     
 
@@ -260,6 +277,10 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isPartOfDoc">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#DocumentElement"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/jbouchep/leads/rules#Document"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#elemPartOfElem"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/jbouchep/leads/rules#isPartOfDoc"/>
+        </owl:propertyChainAxiom>
         <rdfs:comment>Indicates the document a DocumentElement is part of</rdfs:comment>
     </owl:ObjectProperty>
     
